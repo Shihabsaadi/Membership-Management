@@ -1,0 +1,200 @@
+﻿
+@{
+    ViewBag.Title = "Member";
+    ViewBag.TitleIcon = "member.png";
+    ViewBag.NavbarMember = "active";
+    Layout = "~/Views/Shared/_MainContent.cshtml";
+}
+<section class="content" ng-app="myApp" ng-controller="memberCtrl">
+    <div class="row">
+        <div class="col-12">
+            <div class="overlay d-flex justify-content-center align-items-center" ng-show="overlay==true">
+                <i class="fas fa-2x fa-sync fa-spin"></i>
+            </div>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label class="control-label">Select Organization</label>
+                    <select class="form-control" ng-model="selectedOrganization">
+                        <option ng-repeat="item in OrganizationLists" value="{{item.Id}}"> {{item.Name}}</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-sm btn-success" ng-click="onClick('SearchByOrganization',selectedOrganization)"><i class="fa fa-search"></i></button>
+            </form>
+            <div class="card card-gray-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Member List</h3>
+                </div>
+
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="table table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="1%">Sl</th>
+                                    <th>Name</th>
+                                    <th width="1%">Phone</th>
+                                    <th class="text-center">Address</th>
+                                    <th width="1%">Status</th>
+                                    <th width="1%" class="text-center"><a data-toggle="modal" href="#member-modal" title="Add Member" class="btn btn-sm bg-gradient-green" ng-click="Editable=false; reset()"><i class="fa fa-user-plus"></i></a></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in MemberLists">
+                                    <td>{{$index+1}}</td>
+                                    <td>
+                                        {{item.Name}}
+                                    </td>
+                                    <td>{{item.Phone}}</td>
+                                    <td>{{item.Address}}, {{item.Upazilla}}, {{item.District}},{{item.Division}}</td>
+                                    <td>
+                                        <label ng-show="item.Status==true" class="badge badge-success">Active</label>
+                                        <label ng-show="item.Status!=true" class="badge badge-danger">In Active</label>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a data-toggle="modal" href="#member-modal" title="Edit Member" class="btn btn-sm bg-gradient-blue" ng-click="onClick('EditMember',item)"><i class="fa fa-edit"></i></a>
+                                            <a class="btn btn-sm bg-gradient-red" ng-show="item.Status!=false" ng-click="onClick('ChangeStatus',item)"><i class="fa fa-trash"></i></a>
+                                            <a class="btn btn-sm bg-gradient-yellow" ng-show="item.Status!=true" ng-click="onClick('ChangeStatus',item)"><i class="fa fa-thumbs-up"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                        </table>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    @*Insert member*@
+    <div class="modal fade" id="member-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Create Member</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label">Organization</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" ng-model="selectedOrganization">
+                                        <option ng-repeat="item in OrganizationLists" value="{{item.Id}}"> {{item.Name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label">Name</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="name" type="text" class="form-control" placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label">Email <i class="fa {{EmailValidation}}"></i></label>
+                                <div class="col-sm-9">
+                                    <input ng-model="email" type="text" class="form-control" placeholder="Email" ng-blur="onKeyPress('CheckDuplicateMail')">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label">Phone</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="phone" type="text" class="form-control" placeholder="Phone">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label">Division</label>
+                                <div class="col-sm-9">
+                                    @*<input ng-model="address" type="text" class="form-control" placeholder="Address">*@
+                                    @*<select class="form-control" ng-model="division" ng-change="onClick('ChangeDivison',obj)">
+                                            <option ng-repeat="it in DivisionLists" value="{{it}}"> {{it.DivisionName}} </option>
+                                        </select>*@
+                                    <select class="form-control" ng-model="division" ng-change="onClick('ChangeDivison',division)"
+                                            ng-options="it.DivisionId as it.DivisionName for it in DivisionLists"></select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label">District</label>
+                                <div class="col-sm-9">
+                                    @*<input ng-model="address" type="text" class="form-control" placeholder="Address">*@
+                                    <select class="form-control" ng-model="district" ng-change="onClick('ChangeDistrict',district)"
+                                            ng-options="it.DistrictId as it.DistrictName for it in DistrictLists"></select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label">Thana/Upazila</label>
+                                <div class="col-sm-9">
+                                    @*<input ng-model="address" type="text" class="form-control" placeholder="Address">*@
+                                    <select class="form-control select2" ng-model="upazilla" style="width: 100%;" aria-hidden="true" ng-change="onClick('ChangeUpazilla',upazilla)"
+                                            ng-options="it.UpazilaId as it.UpazailaName for it in UpazillaLists"></select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label">Address</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" ng-model="address" placeholder="House no: , Road No: , Area/Para:" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label">Gender</label>
+                                <div class="col-sm-9">
+                                    <select ng-model="gender" class="form-control">
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label">Payment Fee</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="paymentFee" type="text" class="form-control" placeholder="Payment Fee">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label">Active</label>
+                                <div class="custom-control custom-checkbox">
+                                    <input class="col-sm-9 custom-control-input" type="checkbox" id="customCheckbox2" ng-model="status">
+                                    <label for="customCheckbox2" class="custom-control-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <!-- /.card-footer -->
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button data-toggle="tooltip" title="Save" type="button" class="btn btn-success pull-right" data-dismiss="modal" ng-disabled="!name || !selectedOrganization || !gender || !paymentFee || !address || !validation" ng-click="onClick('SaveMember');obj=null"><i class="fa fa-save"></i></button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    @*EndContext Insert Member Model*@
+
+    @*Update member modal*@
+
+    @* endupdate member modal*@
+</section>
+@section Scripts
+    {
+     
+   <script>
+       $(function () {
+           //Initialize Select2 Elements
+           $('.select2').select2()
+       });
+    </script>
+    <script src="~/scripts/Angular/appModul.js"></script>
+    <script src="~/scripts/Angular/Member/MemberService.js"></script>
+    <script src="~/scripts/Angular/Member/MemberController.js"></script>
+    <script src="~/scripts/Angular/Organization/OrganizationService.js"></script>
+}

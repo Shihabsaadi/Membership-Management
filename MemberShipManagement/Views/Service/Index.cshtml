@@ -1,0 +1,178 @@
+﻿
+@{
+    ViewBag.Title = "Service";
+    ViewBag.TitleIcon = "service.png";
+    ViewBag.NavbarService = "active";
+    Layout = "~/Views/Shared/_MainContent.cshtml";
+}
+
+<section class="content" ng-app="myApp" ng-controller="serviceCtrl">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-lg-12">
+            <div class="card card-gray-dark card-tabs">
+                <div class="card-header p-0 pt-1">
+                    <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Service</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Assign Service</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" id="custom-tabs-one-tabContent">
+                        <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th width="1%">Sl</th>
+                                        <th>Name</th>
+                                        <th width="1%">Status</th>
+                                        <th width="1%" class="text-center"><button data-toggle="modal" href="#service-modal" title="Create Service" class="btn btn-sm btn-success" ng-click="reset()"><i class="fa fa-plus-circle"></i></button></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in ServiceList">
+                                        <td>{{$index+1}}</td>
+                                        <td>
+                                            {{item.Name}}
+                                        </td>
+                                        <td>
+                                            <label ng-show="item.Status==1" class="badge badge-success">Active</label>
+                                            <label ng-show="item.Status!=1" class="badge badge-danger">In Active</label>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a data-toggle="modal" href="#service-modal" title="Edit Service" class="btn btn-sm btn-primary" ng-click="onClick('EditService',item)"><i class="fa fa-edit"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <label class="control-label">Select Organization</label>
+                                    <select class="form-control" ng-model="selectedOrganization" ng-change="onClick('SearchMemberByOrganization')">
+                                        <option ng-repeat="item in OrganizationLists" value="{{item.Id}}"> {{item.Name}}</option>
+                                    </select>
+                                </div>
+                            </form>
+                            <div class="table table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th width="1%">SL</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            @*<th width="1%">Services</th>*@
+                                            <th width="1%">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in MemberLists">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{item.Name}}</td>
+                                            <td>{{item.Email}}</td>
+                                            <td>{{item.Phone}}</td>
+                                            @*<td>
+                                                <div class="dropdown" ng-show="item.ServiceName.length>1">
+                                                    <button class="btn btn-sm btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                       {{item.ServiceName[0]}}
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="#" ng-repeat="uitem in item.ServiceName">{{uitem}}</a>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-sm btn-dark" ng-show="item.ServiceName.length<2 && item.ServiceName.length!=0">{{item.ServiceName[0]}}</button>
+                                            </td>*@
+                                            <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#serviceBill-modal" ng-click="onClick('AccessServiceToMember',item)"><b>Service</b></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+    <div class="modal fade" id="serviceBill-modal">
+        <div class="modal-dialog modal-sm  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Access Service To <b>{{ServiceHolderName}}</b></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row" ng-repeat="item in ServiceListToAccess">
+                        <label class="col-sm-4 control-label">{{item.Name}}</label>
+                        <div class="col-sm-8">
+                            <input ng-model="item.HasAccess" type="checkbox" ng-click="onClick('SaveAccessForMember',item)">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" id="service-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Create Service</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label">Name</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Name" type="text" class="form-control" placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label">Active</label>
+                                <div class="custom-control custom-checkbox">
+                                    <input class="col-sm-9 custom-control-input" type="checkbox" id="customCheckbox2" ng-model="Status">
+                                    <label for="customCheckbox2" class="custom-control-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <!-- /.card-footer -->
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button data-toggle="tooltip" title="Save" type="button" class="btn btn-success pull-right" data-dismiss="modal" ng-disabled="!Name" ng-click="onClick('SaveService')"><i class="fa fa-save"></i></button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    
+</section>
+@section Scripts
+    {
+    <script src="~/scripts/Angular/appModul.js"></script>
+    <script src="~/scripts/Angular/Service/ServiceService.js"></script>
+    <script src="~/scripts/Angular/Service/ServiceController.js"></script>
+    <script src="~/scripts/Angular/Organization/OrganizationService.js"></script>
+    <script src="~/scripts/Angular/Member/MemberService.js"></script>
+}
+
+

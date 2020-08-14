@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MembershipManagementDBModelStoreContainer" CdmEntityContainer="MembershipManagementDBEntities">
+    <EntitySetMapping Name="Organizations">
+      <EntityTypeMapping TypeName="MembershipManagementDBModel.Organization">
+        <MappingFragment StoreEntitySet="Organizations">
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UpdatedBy_Id" ColumnName="UpdatedBy_Id" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedBy_Id" ColumnName="CreatedBy_Id" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Member_Organizations">
+      <EntityTypeMapping TypeName="MembershipManagementDBModel.Member_Organizations">
+        <MappingFragment StoreEntitySet="Member_Organizations">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Member_Id" ColumnName="Member_Id" />
+          <ScalarProperty Name="UpdateAccessBy_Id" ColumnName="UpdateAccessBy_Id" />
+          <ScalarProperty Name="UpdateAccess_Date" ColumnName="UpdateAccess_Date" />
+          <ScalarProperty Name="Access_Date" ColumnName="Access_Date" />
+          <ScalarProperty Name="Organization_Id" ColumnName="Organization_Id" />
+          <ScalarProperty Name="AccessBy_Id" ColumnName="AccessBy_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="MembershipManagementDBModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Committee_Member">
+      <EntityTypeMapping TypeName="MembershipManagementDBModel.Committee_Member">
+        <MappingFragment StoreEntitySet="Committee_Member">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="AccessedBy_Id" ColumnName="AccessedBy_Id" />
+          <ScalarProperty Name="Accessed_Date" ColumnName="Accessed_Date" />
+          <ScalarProperty Name="Role_Id" ColumnName="Role_Id" />
+          <ScalarProperty Name="Member_Id" ColumnName="Member_Id" />
+          <ScalarProperty Name="Committee_Id" ColumnName="Committee_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tasks">
+      <EntityTypeMapping TypeName="MembershipManagementDBModel.Task">
+        <MappingFragment StoreEntitySet="Task">
+          <ScalarProperty Name="Committee_Id" ColumnName="Committee_Id" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="AppointedTo" ColumnName="AppointedTo" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="AssignedBy_Id" ColumnName="AssignedBy_Id" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Task_Date" ColumnName="Task_Date" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Districts">
+      <EntityTypeMapping TypeName="MembershipManagementDBModel.District">
+        <MappingFragment StoreEntitySet="Districts">
+          <ScalarProperty Name="website" ColumnName="website" />
+          <ScalarProperty Name="lon" ColumnName="lon" />
+          <ScalarProperty Name="lat" ColumnName="lat" />
+          <ScalarProperty Name="Bn_Name" ColumnName="Bn_Name" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Division_Id" ColumnName="Division_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Divisions">
+      <EntityTypeMapping TypeName="MembershipManagementDBModel.Division">
+        <MappingFragment StoreEntitySet="Divisions">
+          <ScalarProperty Name="Bn_Name" ColumnName="Bn_Name" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Upazilas">
+      <EntityTypeMapping TypeName="MembershipManagementDBModel.Upazila">
+        <MappingFragment StoreEntitySet="Upazilas">
+          <ScalarProperty Name="Bn_Name" ColumnName="Bn_Name" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="District_Id" ColumnName="District_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentShipAmounts">
+      <EntityTypeMapping TypeName="MembershipManagementDBModel.PaymentShipAmount">
+        <MappingFragment StoreEntitySet="PaymentShipAmount">
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="AmountToPay" ColumnName="AmountToPay" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TaskAgendas">
+      <EntityTypeMapping TypeName="MembershipManagementDBModel.TaskAgenda">
+        <MappingFragment StoreEntitySet="TaskAgenda">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Agenda" ColumnName="Agenda" />
+          <ScalarProperty Name="Task_Id" ColumnName="Task_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Task_Member">
+      <EntityTypeMapping TypeName="MembershipManagementDBModel.Task_Member">
+        <MappingFragment StoreEntitySet="Task_Member">
+          <ScalarProperty Name="Task_Id" ColumnName="Task_Id" />
+          <ScalarProperty Name="Member_Id" ColumnName="Member_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Committees">
+      <EntityTypeMapping TypeName="MembershipManagementDBModel.Committee">
+        <MappingFragment StoreEntitySet="Committee">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Duration_Date" ColumnName="Duration_Date" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Organization_Id" ColumnName="Organization_Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="MembershipManagementDBModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Organization_Id" ColumnName="Organization_Id" />
+          <ScalarProperty Name="Committee_Id" ColumnName="Committee_Id" />
+          <ScalarProperty Name="Member_Id" ColumnName="Member_Id" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="MembershipManagementDBModel.Member">
+        <MappingFragment StoreEntitySet="Members">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="PaymentFee" ColumnName="PaymentFee" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Upazilas_Id" ColumnName="Upazilas_Id" />
+          <ScalarProperty Name="District_Id" ColumnName="District_Id" />
+          <ScalarProperty Name="Division_Id" ColumnName="Division_Id" />
+          <ScalarProperty Name="Organization_Id" ColumnName="Organization_Id" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommitteeMemberViews">
+      <EntityTypeMapping TypeName="MembershipManagementDBModel.CommitteeMemberView">
+        <MappingFragment StoreEntitySet="CommitteeMemberView">
+          <ScalarProperty Name="UserOrganizationId" ColumnName="UserOrganizationId" />
+          <ScalarProperty Name="UserCommitteId" ColumnName="UserCommitteId" />
+          <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="CommitteMemberId" ColumnName="CommitteMemberId" />
+          <ScalarProperty Name="CommitteeStatus" ColumnName="CommitteeStatus" />
+          <ScalarProperty Name="CommitteeName" ColumnName="CommitteeName" />
+          <ScalarProperty Name="RoleStatus" ColumnName="RoleStatus" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="MemberCommiitteStatus" ColumnName="MemberCommiitteStatus" />
+          <ScalarProperty Name="AccessedBy_Id" ColumnName="AccessedBy_Id" />
+          <ScalarProperty Name="Accessed_Date" ColumnName="Accessed_Date" />
+          <ScalarProperty Name="Role_Id" ColumnName="Role_Id" />
+          <ScalarProperty Name="Committee_Id" ColumnName="Committee_Id" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RId" ColumnName="RId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="MembershipManagementDBModel.Transaction">
+        <MappingFragment StoreEntitySet="Transaction">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="MonthlyFee" ColumnName="MonthlyFee" />
+          <ScalarProperty Name="OtherServices" ColumnName="OtherServices" />
+          <ScalarProperty Name="GasBill" ColumnName="GasBill" />
+          <ScalarProperty Name="ElectricBill" ColumnName="ElectricBill" />
+          <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+          <ScalarProperty Name="Received_Date" ColumnName="Received_Date" />
+          <ScalarProperty Name="Billing_Date" ColumnName="Billing_Date" />
+          <ScalarProperty Name="Amount_Id" ColumnName="Amount_Id" />
+          <ScalarProperty Name="Organization_Id" ColumnName="Organization_Id" />
+          <ScalarProperty Name="ReceivedBy_Id" ColumnName="ReceivedBy_Id" />
+          <ScalarProperty Name="PaidBy_Id" ColumnName="PaidBy_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

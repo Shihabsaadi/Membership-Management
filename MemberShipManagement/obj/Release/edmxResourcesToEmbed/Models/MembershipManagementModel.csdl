@@ -1,0 +1,677 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MembershipManagementDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MembershipManagementDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Organizations" EntityType="MembershipManagementDBModel.Organization" />
+    <EntitySet Name="Member_Organizations" EntityType="MembershipManagementDBModel.Member_Organizations" />
+    <AssociationSet Name="FK_Member_Organizations_Organizations" Association="MembershipManagementDBModel.FK_Member_Organizations_Organizations">
+      <End Role="Organization" EntitySet="Organizations" />
+      <End Role="Member_Organizations" EntitySet="Member_Organizations" />
+    </AssociationSet>
+    <EntitySet Name="Roles" EntityType="MembershipManagementDBModel.Role" />
+    <EntitySet Name="Committee_Member" EntityType="MembershipManagementDBModel.Committee_Member" />
+    <AssociationSet Name="FK_Committee_Member_Committee_Role" Association="MembershipManagementDBModel.FK_Committee_Member_Committee_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Committee_Member" EntitySet="Committee_Member" />
+    </AssociationSet>
+    <EntitySet Name="Tasks" EntityType="MembershipManagementDBModel.Task" />
+    <EntitySet Name="Districts" EntityType="MembershipManagementDBModel.District" />
+    <EntitySet Name="Divisions" EntityType="MembershipManagementDBModel.Division" />
+    <EntitySet Name="Upazilas" EntityType="MembershipManagementDBModel.Upazila" />
+    <AssociationSet Name="FK_Districts_Divisions" Association="MembershipManagementDBModel.FK_Districts_Divisions">
+      <End Role="Division" EntitySet="Divisions" />
+      <End Role="District" EntitySet="Districts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Upazilas_Districts" Association="MembershipManagementDBModel.FK_Upazilas_Districts">
+      <End Role="District" EntitySet="Districts" />
+      <End Role="Upazila" EntitySet="Upazilas" />
+    </AssociationSet>
+    <EntitySet Name="PaymentShipAmounts" EntityType="MembershipManagementDBModel.PaymentShipAmount" />
+    <EntitySet Name="TaskAgendas" EntityType="MembershipManagementDBModel.TaskAgenda" />
+    <AssociationSet Name="FK_Agenda_Task" Association="MembershipManagementDBModel.FK_Agenda_Task">
+      <End Role="Task" EntitySet="Tasks" />
+      <End Role="TaskAgenda" EntitySet="TaskAgendas" />
+    </AssociationSet>
+    <EntitySet Name="Task_Member" EntityType="MembershipManagementDBModel.Task_Member" />
+    <AssociationSet Name="FK_Task_Member_Task" Association="MembershipManagementDBModel.FK_Task_Member_Task">
+      <End Role="Task" EntitySet="Tasks" />
+      <End Role="Task_Member" EntitySet="Task_Member" />
+    </AssociationSet>
+    <EntitySet Name="Committees" EntityType="MembershipManagementDBModel.Committee" />
+    <AssociationSet Name="FK_Committee_Member_Committee" Association="MembershipManagementDBModel.FK_Committee_Member_Committee">
+      <End Role="Committee" EntitySet="Committees" />
+      <End Role="Committee_Member" EntitySet="Committee_Member" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Committee_Organizations" Association="MembershipManagementDBModel.FK_Committee_Organizations">
+      <End Role="Organization" EntitySet="Organizations" />
+      <End Role="Committee" EntitySet="Committees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Committee" Association="MembershipManagementDBModel.FK_Task_Committee">
+      <End Role="Committee" EntitySet="Committees" />
+      <End Role="Task" EntitySet="Tasks" />
+    </AssociationSet>
+    <EntitySet Name="Users" EntityType="MembershipManagementDBModel.User" />
+    <AssociationSet Name="FK_User_Committees" Association="MembershipManagementDBModel.FK_User_Committees">
+      <End Role="Committee" EntitySet="Committees" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Committee_Member_User" Association="MembershipManagementDBModel.FK_Committee_Member_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Committee_Member" EntitySet="Committee_Member" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Member_Organizations_UserAccessBy" Association="MembershipManagementDBModel.FK_Member_Organizations_UserAccessBy">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Member_Organizations" EntitySet="Member_Organizations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Organizations" Association="MembershipManagementDBModel.FK_User_Organizations">
+      <End Role="Organization" EntitySet="Organizations" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="Members" EntityType="MembershipManagementDBModel.Member" />
+    <AssociationSet Name="FK_Committee_Member_Members" Association="MembershipManagementDBModel.FK_Committee_Member_Members">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="Committee_Member" EntitySet="Committee_Member" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Members_Districts" Association="MembershipManagementDBModel.FK_Members_Districts">
+      <End Role="District" EntitySet="Districts" />
+      <End Role="Member" EntitySet="Members" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Members_Divisions" Association="MembershipManagementDBModel.FK_Members_Divisions">
+      <End Role="Division" EntitySet="Divisions" />
+      <End Role="Member" EntitySet="Members" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Member_Organizations_MemberAccessTo" Association="MembershipManagementDBModel.FK_Member_Organizations_MemberAccessTo">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="Member_Organizations" EntitySet="Member_Organizations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Members_Organizations" Association="MembershipManagementDBModel.FK_Members_Organizations">
+      <End Role="Organization" EntitySet="Organizations" />
+      <End Role="Member" EntitySet="Members" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Members_Upazilas" Association="MembershipManagementDBModel.FK_Members_Upazilas">
+      <End Role="Upazila" EntitySet="Upazilas" />
+      <End Role="Member" EntitySet="Members" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Member_Members" Association="MembershipManagementDBModel.FK_Task_Member_Members">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="Task_Member" EntitySet="Task_Member" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Members" Association="MembershipManagementDBModel.FK_User_Members">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="CommitteeMemberViews" EntityType="MembershipManagementDBModel.CommitteeMemberView" />
+    <EntitySet Name="Transactions" EntityType="MembershipManagementDBModel.Transaction" />
+    <AssociationSet Name="FK_Transaction_PaidBy" Association="MembershipManagementDBModel.FK_Transaction_PaidBy">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_Organization" Association="MembershipManagementDBModel.FK_Transaction_Organization">
+      <End Role="Organization" EntitySet="Organizations" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_PaymentShipAmount" Association="MembershipManagementDBModel.FK_Transaction_PaymentShipAmount">
+      <End Role="PaymentShipAmount" EntitySet="PaymentShipAmounts" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_ReceivedBy" Association="MembershipManagementDBModel.FK_Transaction_ReceivedBy">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy_Id" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy_Id" Type="Int32" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Member_Organizations" Relationship="MembershipManagementDBModel.FK_Member_Organizations_Organizations" FromRole="Organization" ToRole="Member_Organizations" />
+    <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Committees" Relationship="MembershipManagementDBModel.FK_Committee_Organizations" FromRole="Organization" ToRole="Committee" />
+    <NavigationProperty Name="Users" Relationship="MembershipManagementDBModel.FK_User_Organizations" FromRole="Organization" ToRole="User" />
+    <NavigationProperty Name="Members" Relationship="MembershipManagementDBModel.FK_Members_Organizations" FromRole="Organization" ToRole="Member" />
+    <NavigationProperty Name="Transactions" Relationship="MembershipManagementDBModel.FK_Transaction_Organization" FromRole="Organization" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="Member_Organizations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccessBy_Id" Type="Int32" Nullable="false" />
+    <Property Name="Organization_Id" Type="Int32" Nullable="false" />
+    <Property Name="Access_Date" Type="DateTime" Precision="0" />
+    <Property Name="UpdateAccess_Date" Type="DateTime" Precision="0" />
+    <Property Name="UpdateAccessBy_Id" Type="Int32" />
+    <Property Name="Member_Id" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Organization" Relationship="MembershipManagementDBModel.FK_Member_Organizations_Organizations" FromRole="Member_Organizations" ToRole="Organization" />
+    <NavigationProperty Name="User" Relationship="MembershipManagementDBModel.FK_Member_Organizations_UserAccessBy" FromRole="Member_Organizations" ToRole="User" />
+    <NavigationProperty Name="Member" Relationship="MembershipManagementDBModel.FK_Member_Organizations_MemberAccessTo" FromRole="Member_Organizations" ToRole="Member" />
+  </EntityType>
+  <Association Name="FK_Member_Organizations_Organizations">
+    <End Type="MembershipManagementDBModel.Organization" Role="Organization" Multiplicity="1" />
+    <End Type="MembershipManagementDBModel.Member_Organizations" Role="Member_Organizations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Member_Organizations">
+        <PropertyRef Name="Organization_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Committee_Member" Relationship="MembershipManagementDBModel.FK_Committee_Member_Committee_Role" FromRole="Role" ToRole="Committee_Member" />
+  </EntityType>
+  <EntityType Name="Committee_Member">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Committee_Id" Type="Int32" />
+    <Property Name="Member_Id" Type="Int32" Nullable="false" />
+    <Property Name="Role_Id" Type="Int32" />
+    <Property Name="Accessed_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="AccessedBy_Id" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Role" Relationship="MembershipManagementDBModel.FK_Committee_Member_Committee_Role" FromRole="Committee_Member" ToRole="Role" />
+    <NavigationProperty Name="Committee" Relationship="MembershipManagementDBModel.FK_Committee_Member_Committee" FromRole="Committee_Member" ToRole="Committee" />
+    <NavigationProperty Name="User" Relationship="MembershipManagementDBModel.FK_Committee_Member_User" FromRole="Committee_Member" ToRole="User" />
+    <NavigationProperty Name="Member" Relationship="MembershipManagementDBModel.FK_Committee_Member_Members" FromRole="Committee_Member" ToRole="Member" />
+  </EntityType>
+  <Association Name="FK_Committee_Member_Committee_Role">
+    <End Type="MembershipManagementDBModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="MembershipManagementDBModel.Committee_Member" Role="Committee_Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Committee_Member">
+        <PropertyRef Name="Role_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Task_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Created_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="AssignedBy_Id" Type="Int32" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AppointedTo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="Committee_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TaskAgendas" Relationship="MembershipManagementDBModel.FK_Agenda_Task" FromRole="Task" ToRole="TaskAgenda" />
+    <NavigationProperty Name="Task_Member" Relationship="MembershipManagementDBModel.FK_Task_Member_Task" FromRole="Task" ToRole="Task_Member" />
+    <NavigationProperty Name="Committee" Relationship="MembershipManagementDBModel.FK_Task_Committee" FromRole="Task" ToRole="Committee" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Division_Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Bn_Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="lat" Type="Double" Nullable="false" />
+    <Property Name="lon" Type="Double" Nullable="false" />
+    <Property Name="website" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Division" Relationship="MembershipManagementDBModel.FK_Districts_Divisions" FromRole="District" ToRole="Division" />
+    <NavigationProperty Name="Upazilas" Relationship="MembershipManagementDBModel.FK_Upazilas_Districts" FromRole="District" ToRole="Upazila" />
+    <NavigationProperty Name="Members" Relationship="MembershipManagementDBModel.FK_Members_Districts" FromRole="District" ToRole="Member" />
+  </EntityType>
+  <EntityType Name="Division">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Bn_Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Districts" Relationship="MembershipManagementDBModel.FK_Districts_Divisions" FromRole="Division" ToRole="District" />
+    <NavigationProperty Name="Members" Relationship="MembershipManagementDBModel.FK_Members_Divisions" FromRole="Division" ToRole="Member" />
+  </EntityType>
+  <EntityType Name="Upazila">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="District_Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Bn_Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="District" Relationship="MembershipManagementDBModel.FK_Upazilas_Districts" FromRole="Upazila" ToRole="District" />
+    <NavigationProperty Name="Members" Relationship="MembershipManagementDBModel.FK_Members_Upazilas" FromRole="Upazila" ToRole="Member" />
+  </EntityType>
+  <Association Name="FK_Districts_Divisions">
+    <End Type="MembershipManagementDBModel.Division" Role="Division" Multiplicity="1" />
+    <End Type="MembershipManagementDBModel.District" Role="District" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Division">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="District">
+        <PropertyRef Name="Division_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Upazilas_Districts">
+    <End Type="MembershipManagementDBModel.District" Role="District" Multiplicity="1" />
+    <End Type="MembershipManagementDBModel.Upazila" Role="Upazila" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Upazila">
+        <PropertyRef Name="District_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PaymentShipAmount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AmountToPay" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Transactions" Relationship="MembershipManagementDBModel.FK_Transaction_PaymentShipAmount" FromRole="PaymentShipAmount" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="TaskAgenda">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Task_Id" Type="Int32" Nullable="false" />
+    <Property Name="Agenda" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Task" Relationship="MembershipManagementDBModel.FK_Agenda_Task" FromRole="TaskAgenda" ToRole="Task" />
+  </EntityType>
+  <Association Name="FK_Agenda_Task">
+    <End Type="MembershipManagementDBModel.Task" Role="Task" Multiplicity="1" />
+    <End Type="MembershipManagementDBModel.TaskAgenda" Role="TaskAgenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskAgenda">
+        <PropertyRef Name="Task_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Task_Member">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Member_Id" Type="Int32" />
+    <Property Name="Task_Id" Type="Int32" />
+    <NavigationProperty Name="Task" Relationship="MembershipManagementDBModel.FK_Task_Member_Task" FromRole="Task_Member" ToRole="Task" />
+    <NavigationProperty Name="Member" Relationship="MembershipManagementDBModel.FK_Task_Member_Members" FromRole="Task_Member" ToRole="Member" />
+  </EntityType>
+  <Association Name="FK_Task_Member_Task">
+    <End Type="MembershipManagementDBModel.Task" Role="Task" Multiplicity="0..1" />
+    <End Type="MembershipManagementDBModel.Task_Member" Role="Task_Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task_Member">
+        <PropertyRef Name="Task_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Committee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Organization_Id" Type="Int32" Nullable="false" />
+    <Property Name="Created_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Duration_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Committee_Member" Relationship="MembershipManagementDBModel.FK_Committee_Member_Committee" FromRole="Committee" ToRole="Committee_Member" />
+    <NavigationProperty Name="Organization" Relationship="MembershipManagementDBModel.FK_Committee_Organizations" FromRole="Committee" ToRole="Organization" />
+    <NavigationProperty Name="Tasks" Relationship="MembershipManagementDBModel.FK_Task_Committee" FromRole="Committee" ToRole="Task" />
+    <NavigationProperty Name="Users" Relationship="MembershipManagementDBModel.FK_User_Committees" FromRole="Committee" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Committee_Member_Committee">
+    <End Type="MembershipManagementDBModel.Committee" Role="Committee" Multiplicity="0..1" />
+    <End Type="MembershipManagementDBModel.Committee_Member" Role="Committee_Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Committee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Committee_Member">
+        <PropertyRef Name="Committee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Committee_Organizations">
+    <End Type="MembershipManagementDBModel.Organization" Role="Organization" Multiplicity="1" />
+    <End Type="MembershipManagementDBModel.Committee" Role="Committee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Committee">
+        <PropertyRef Name="Organization_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_Committee">
+    <End Type="MembershipManagementDBModel.Committee" Role="Committee" Multiplicity="1" />
+    <End Type="MembershipManagementDBModel.Task" Role="Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Committee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="Committee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="Member_Id" Type="Int32" />
+    <Property Name="Committee_Id" Type="Int32" />
+    <Property Name="Organization_Id" Type="Int32" />
+    <NavigationProperty Name="Committee" Relationship="MembershipManagementDBModel.FK_User_Committees" FromRole="User" ToRole="Committee" />
+    <NavigationProperty Name="Committee_Member" Relationship="MembershipManagementDBModel.FK_Committee_Member_User" FromRole="User" ToRole="Committee_Member" />
+    <NavigationProperty Name="Member_Organizations" Relationship="MembershipManagementDBModel.FK_Member_Organizations_UserAccessBy" FromRole="User" ToRole="Member_Organizations" />
+    <NavigationProperty Name="Organization" Relationship="MembershipManagementDBModel.FK_User_Organizations" FromRole="User" ToRole="Organization" />
+    <NavigationProperty Name="Member" Relationship="MembershipManagementDBModel.FK_User_Members" FromRole="User" ToRole="Member" />
+    <NavigationProperty Name="Transactions" Relationship="MembershipManagementDBModel.FK_Transaction_ReceivedBy" FromRole="User" ToRole="Transaction" />
+  </EntityType>
+  <Association Name="FK_User_Committees">
+    <End Type="MembershipManagementDBModel.Committee" Role="Committee" Multiplicity="0..1" />
+    <End Type="MembershipManagementDBModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Committee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Committee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Committee_Member_User">
+    <End Type="MembershipManagementDBModel.User" Role="User" Multiplicity="1" />
+    <End Type="MembershipManagementDBModel.Committee_Member" Role="Committee_Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Committee_Member">
+        <PropertyRef Name="AccessedBy_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Member_Organizations_UserAccessBy">
+    <End Type="MembershipManagementDBModel.User" Role="User" Multiplicity="1" />
+    <End Type="MembershipManagementDBModel.Member_Organizations" Role="Member_Organizations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Member_Organizations">
+        <PropertyRef Name="AccessBy_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Organizations">
+    <End Type="MembershipManagementDBModel.Organization" Role="Organization" Multiplicity="0..1" />
+    <End Type="MembershipManagementDBModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Organization_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Created_Date" Type="DateTime" Precision="3" />
+    <Property Name="Gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Organization_Id" Type="Int32" Nullable="false" />
+    <Property Name="Division_Id" Type="Int32" />
+    <Property Name="District_Id" Type="Int32" />
+    <Property Name="Upazilas_Id" Type="Int32" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentFee" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Committee_Member" Relationship="MembershipManagementDBModel.FK_Committee_Member_Members" FromRole="Member" ToRole="Committee_Member" />
+    <NavigationProperty Name="District" Relationship="MembershipManagementDBModel.FK_Members_Districts" FromRole="Member" ToRole="District" />
+    <NavigationProperty Name="Division" Relationship="MembershipManagementDBModel.FK_Members_Divisions" FromRole="Member" ToRole="Division" />
+    <NavigationProperty Name="Member_Organizations" Relationship="MembershipManagementDBModel.FK_Member_Organizations_MemberAccessTo" FromRole="Member" ToRole="Member_Organizations" />
+    <NavigationProperty Name="Organization" Relationship="MembershipManagementDBModel.FK_Members_Organizations" FromRole="Member" ToRole="Organization" />
+    <NavigationProperty Name="Upazila" Relationship="MembershipManagementDBModel.FK_Members_Upazilas" FromRole="Member" ToRole="Upazila" />
+    <NavigationProperty Name="Task_Member" Relationship="MembershipManagementDBModel.FK_Task_Member_Members" FromRole="Member" ToRole="Task_Member" />
+    <NavigationProperty Name="Users" Relationship="MembershipManagementDBModel.FK_User_Members" FromRole="Member" ToRole="User" />
+    <NavigationProperty Name="Transactions" Relationship="MembershipManagementDBModel.FK_Transaction_PaidBy" FromRole="Member" ToRole="Transaction" />
+  </EntityType>
+  <Association Name="FK_Committee_Member_Members">
+    <End Type="MembershipManagementDBModel.Member" Role="Member" Multiplicity="1" />
+    <End Type="MembershipManagementDBModel.Committee_Member" Role="Committee_Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Committee_Member">
+        <PropertyRef Name="Member_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Members_Districts">
+    <End Type="MembershipManagementDBModel.District" Role="District" Multiplicity="0..1" />
+    <End Type="MembershipManagementDBModel.Member" Role="Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Member">
+        <PropertyRef Name="District_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Members_Divisions">
+    <End Type="MembershipManagementDBModel.Division" Role="Division" Multiplicity="0..1" />
+    <End Type="MembershipManagementDBModel.Member" Role="Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Division">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Member">
+        <PropertyRef Name="Division_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Member_Organizations_MemberAccessTo">
+    <End Type="MembershipManagementDBModel.Member" Role="Member" Multiplicity="1" />
+    <End Type="MembershipManagementDBModel.Member_Organizations" Role="Member_Organizations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Member_Organizations">
+        <PropertyRef Name="Member_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Members_Organizations">
+    <End Type="MembershipManagementDBModel.Organization" Role="Organization" Multiplicity="1" />
+    <End Type="MembershipManagementDBModel.Member" Role="Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Member">
+        <PropertyRef Name="Organization_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Members_Upazilas">
+    <End Type="MembershipManagementDBModel.Upazila" Role="Upazila" Multiplicity="0..1" />
+    <End Type="MembershipManagementDBModel.Member" Role="Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Upazila">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Member">
+        <PropertyRef Name="Upazilas_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_Member_Members">
+    <End Type="MembershipManagementDBModel.Member" Role="Member" Multiplicity="0..1" />
+    <End Type="MembershipManagementDBModel.Task_Member" Role="Task_Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task_Member">
+        <PropertyRef Name="Member_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Members">
+    <End Type="MembershipManagementDBModel.Member" Role="Member" Multiplicity="0..1" />
+    <End Type="MembershipManagementDBModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Member_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CommitteeMemberView">
+    <Key>
+      <PropertyRef Name="RId" />
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Gender" />
+    </Key>
+    <Property Name="RId" Type="Int64" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="Committee_Id" Type="Int32" />
+    <Property Name="Role_Id" Type="Int32" />
+    <Property Name="Accessed_Date" Type="DateTime" Precision="0" />
+    <Property Name="AccessedBy_Id" Type="Int32" />
+    <Property Name="MemberCommiitteStatus" Type="Boolean" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoleStatus" Type="Boolean" />
+    <Property Name="CommitteeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CommitteeStatus" Type="Boolean" />
+    <Property Name="CommitteMemberId" Type="Int32" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserStatus" Type="Boolean" />
+    <Property Name="UserCommitteId" Type="Int32" />
+    <Property Name="UserOrganizationId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaidBy_Id" Type="Int32" Nullable="false" />
+    <Property Name="ReceivedBy_Id" Type="Int32" Nullable="false" />
+    <Property Name="Organization_Id" Type="Int32" Nullable="false" />
+    <Property Name="Amount_Id" Type="Int32" />
+    <Property Name="Billing_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Received_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AmountPaid" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="ElectricBill" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="GasBill" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="OtherServices" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MonthlyFee" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Member" Relationship="MembershipManagementDBModel.FK_Transaction_PaidBy" FromRole="Transaction" ToRole="Member" />
+    <NavigationProperty Name="Organization" Relationship="MembershipManagementDBModel.FK_Transaction_Organization" FromRole="Transaction" ToRole="Organization" />
+    <NavigationProperty Name="PaymentShipAmount" Relationship="MembershipManagementDBModel.FK_Transaction_PaymentShipAmount" FromRole="Transaction" ToRole="PaymentShipAmount" />
+    <NavigationProperty Name="User" Relationship="MembershipManagementDBModel.FK_Transaction_ReceivedBy" FromRole="Transaction" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Transaction_PaidBy">
+    <End Type="MembershipManagementDBModel.Member" Role="Member" Multiplicity="1" />
+    <End Type="MembershipManagementDBModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="PaidBy_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_Organization">
+    <End Type="MembershipManagementDBModel.Organization" Role="Organization" Multiplicity="1" />
+    <End Type="MembershipManagementDBModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="Organization_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_PaymentShipAmount">
+    <End Type="MembershipManagementDBModel.PaymentShipAmount" Role="PaymentShipAmount" Multiplicity="0..1" />
+    <End Type="MembershipManagementDBModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentShipAmount">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="Amount_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_ReceivedBy">
+    <End Type="MembershipManagementDBModel.User" Role="User" Multiplicity="1" />
+    <End Type="MembershipManagementDBModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="ReceivedBy_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

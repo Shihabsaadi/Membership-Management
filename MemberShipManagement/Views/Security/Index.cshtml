@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "Security";
+    ViewBag.TitleIcon = "access.png";
+    ViewBag.NavbarSecurity = "active";
+    Layout = "~/Views/Shared/_MainContent.cshtml";
+}
+
+<section class="content" ng-app="myApp" ng-controller="securityCtrl">
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-gray-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Security User List</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th width="1%">Sl</th>
+                                <th>Name</th>
+                                <th width="1%">Status</th>
+                                <th width="1%" class="text-center"><button data-toggle="modal" href="#role-modal" title="Create User" ng-click="reset()" class="btn btn-sm btn-success"><i class="fa fa-plus-circle"></i></button></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in securityUserList">
+                                <td>{{$index+1}}</td>
+                                <td>
+                                    {{item.Name}}
+                                </td>
+                                <td>
+                                    <label ng-show="item.Status==1" class="badge badge-success">Active</label>
+                                    <label ng-show="item.Status!=1" class="badge badge-danger">In Active</label>
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a data-toggle="modal" href="#role-modal" title="Edit Role" class="btn btn-sm btn-primary" ng-click="onClick('EditUser',item)"><i class="fa fa-edit"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+
+                    </table>
+                </div>
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    <div class="modal fade" id="role-modal">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Manage Security User</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label">Name</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Name" type="text" class="form-control" placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 control-label">User Name <i class="fa {{EmailValidation}}"></i> </label>
+                                <div class="col-sm-9">
+                                    <input ng-model="UserName" type="text" ng-blur="onKeyPress('CheckDuplicateUserName')" class="form-control" placeholder="User Name">
+                                </div>
+                            </div>
+                            <div class="form-group row" ng-show="editMode==false" >
+                                <label class="col-sm-3 control-label">Password</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Password" type="password" class="form-control" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group row" ng-show="editMode==false">
+                                <label class="col-sm-3 control-label">ConfirmPassword</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="ConfirmPassword" type="password" ng-keyup="onKeyPress('Confirm Password')" class="form-control" placeholder="Password"> <b class="text-blue">{{PasswordValidation}}</b>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                    <label class="col-sm-3 control-label">Active</label>
+                                    <div class="col-sm-9">
+                                        <input ng-model="Status" type="checkbox">
+                                    </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <!-- /.card-footer -->
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button data-toggle="tooltip" title="Save" type="button" class="btn btn-success pull-right" data-dismiss="modal" ng-disabled="!Name || !UserName" ng-click="onClick('SaveUser')"><i class="fa fa-save"></i></button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</section>
+@section Scripts
+    {
+    <script src="~/scripts/Angular/appModul.js"></script>
+    <script src="~/scripts/Angular/Security/SecurityUserService.js"></script>
+    <script src="~/scripts/Angular/Security/SecurityUserController.js"></script>
+}
+
+
+
+
+
+

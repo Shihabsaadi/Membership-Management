@@ -1,0 +1,237 @@
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\ApplicationInsights.config
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\csc.exe
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.CodeAnalysis.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.CSharp.Core.targets
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.VisualBasic.Core.targets
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\System.Collections.Immutable.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\System.Reflection.Metadata.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\vbc.exe
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\VBCSCompiler.exe
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\VBCSCompiler.exe.config
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\MemberShipManagement.dll.config
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\MemberShipManagement.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\MemberShipManagement.pdb
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\EntityFramework.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\EntityFramework.SqlServer.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.Agent.Intercept.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.DependencyCollector.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.PerfCounterCollector.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.ServerTelemetryChannel.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.Web.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.WindowsServer.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.ApplicationInsights.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.Web.Infrastructure.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Postal.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\RazorEngine.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Helpers.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Mvc.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Razor.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.Deployment.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.Razor.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\EntityFramework.xml
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\EntityFramework.SqlServer.xml
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.DependencyCollector.xml
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.ServerTelemetryChannel.xml
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.Web.xml
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.WindowsServer.xml
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.ApplicationInsights.xml
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Postal.xml
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\RazorEngine.pdb
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\RazorEngine.xml
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Razor.xml
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.xml
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.Deployment.xml
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.Razor.xml
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Helpers.xml
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Mvc.xml
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\obj\Debug\MemberShipManagement.dll
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\obj\Debug\MemberShipManagement.pdb
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\ApplicationInsights.config
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\csc.exe
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\System.Collections.Immutable.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\System.Reflection.Metadata.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\vbc.exe
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\VBCSCompiler.exe
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\roslyn\VBCSCompiler.exe.config
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\MemberShipManagement.dll.config
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\MemberShipManagement.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\MemberShipManagement.pdb
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\EntityFramework.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\EntityFramework.SqlServer.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.Agent.Intercept.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.DependencyCollector.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.Web.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.WindowsServer.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.ApplicationInsights.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Postal.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\RazorEngine.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Helpers.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Mvc.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Razor.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.Deployment.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.Razor.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\EntityFramework.xml
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\EntityFramework.SqlServer.xml
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.DependencyCollector.xml
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.ServerTelemetryChannel.xml
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.Web.xml
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.WindowsServer.xml
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.ApplicationInsights.xml
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\Postal.xml
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\RazorEngine.pdb
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\RazorEngine.xml
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Razor.xml
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.xml
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.Deployment.xml
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.Razor.xml
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Helpers.xml
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\bin\System.Web.Mvc.xml
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\obj\Debug\MemberShipManagement.dll
+E:\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\obj\Debug\MemberShipManagement.pdb
+\\10.11.83.70\ShareFolder\CRM\MembershipManagement\MemberShipManagement\MemberShipManagement\obj\Debug\MemberShipManagement.csprojResolveAssemblyReference.cache
+D:\Project\MemberShipManagement\MemberShipManagement\obj\Debug\MemberShipManagement.csprojAssemblyReference.cache
+D:\Project\MemberShipManagement\MemberShipManagement\obj\Debug\MemberShipManagement.csproj.CoreCompileInputs.cache
+D:\Project\MemberShipManagement\MemberShipManagement\obj\Debug\MemberShipManagement.dll
+D:\Project\MemberShipManagement\MemberShipManagement\obj\Debug\MemberShipManagement.pdb
+D:\Project\MemberShipManagement\MemberShipManagement\bin\ApplicationInsights.config
+D:\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\csc.exe
+D:\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\System.Collections.Immutable.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\System.Reflection.Metadata.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\vbc.exe
+D:\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\VBCSCompiler.exe
+D:\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\VBCSCompiler.exe.config
+D:\Project\MemberShipManagement\MemberShipManagement\bin\MemberShipManagement.dll.config
+D:\Project\MemberShipManagement\MemberShipManagement\bin\MemberShipManagement.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\MemberShipManagement.pdb
+D:\Project\MemberShipManagement\MemberShipManagement\bin\EntityFramework.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\EntityFramework.SqlServer.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.DependencyCollector.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.Web.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.WindowsServer.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.ApplicationInsights.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.Web.Infrastructure.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\Postal.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\RazorEngine.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Helpers.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Mvc.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Razor.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.Deployment.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.Razor.dll
+D:\Project\MemberShipManagement\MemberShipManagement\bin\EntityFramework.xml
+D:\Project\MemberShipManagement\MemberShipManagement\bin\EntityFramework.SqlServer.xml
+D:\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.DependencyCollector.xml
+D:\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.Web.xml
+D:\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.WindowsServer.xml
+D:\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.ApplicationInsights.xml
+D:\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Project\MemberShipManagement\MemberShipManagement\bin\Postal.xml
+D:\Project\MemberShipManagement\MemberShipManagement\bin\RazorEngine.pdb
+D:\Project\MemberShipManagement\MemberShipManagement\bin\RazorEngine.xml
+D:\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Razor.xml
+D:\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.xml
+D:\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.Deployment.xml
+D:\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.Razor.xml
+D:\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Helpers.xml
+D:\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Mvc.xml
+D:\Project\MemberShipManagement\MemberShipManagement\obj\Debug\MemberShipManagement.csproj.CopyComplete
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\ApplicationInsights.config
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\csc.exe
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\System.Collections.Immutable.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\System.Reflection.Metadata.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\vbc.exe
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\VBCSCompiler.exe
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\roslyn\VBCSCompiler.exe.config
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\MemberShipManagement.dll.config
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\MemberShipManagement.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\MemberShipManagement.pdb
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\EntityFramework.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\EntityFramework.SqlServer.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.Agent.Intercept.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.DependencyCollector.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.Web.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.WindowsServer.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.ApplicationInsights.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.Web.Infrastructure.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Postal.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\RazorEngine.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Helpers.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Mvc.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Razor.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.Deployment.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.Razor.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\EntityFramework.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\EntityFramework.SqlServer.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.DependencyCollector.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.ServerTelemetryChannel.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.Web.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AI.WindowsServer.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.ApplicationInsights.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Postal.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\RazorEngine.pdb
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\RazorEngine.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Razor.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.Deployment.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Webpages.Razor.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Helpers.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\System.Web.Mvc.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\obj\Debug\MemberShipManagement.csproj.CoreCompileInputs.cache
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\obj\Debug\MemberShipManagement.csproj.CopyComplete
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\obj\Debug\MemberShipManagement.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\obj\Debug\MemberShipManagement.pdb
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\obj\Debug\MemberShipManagement.csprojAssemblyReference.cache
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AspNet.SignalR.Core.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.Owin.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.Owin.Security.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Newtonsoft.Json.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Owin.dll
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AspNet.SignalR.Core.pdb
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AspNet.SignalR.Core.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.Owin.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Microsoft.Owin.Security.xml
+E:\D parttion\Project\MemberShipManagement\MemberShipManagement\bin\Newtonsoft.Json.xml

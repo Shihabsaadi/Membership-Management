@@ -1,0 +1,165 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainContent.cshtml";
+}
+
+<div class="card" style="position: relative; left: 0px; top: 0px;" ng-app="myApp" ng-controller="committeeMemberCtrl">
+    
+    <div class="card-body">
+        <section>
+            
+            <div class="col-12">
+                <form class="form-inline text-center">
+                    <div class="form-group">
+                        <label class="control-label">Select Organization</label>
+                        <select class="form-control" ng-model="selectedOrganization" ng-change="onClick('ChangeOrganization',selectedOrganization)">
+                            <option ng-repeat="item in OrganizationLists" value="{{item.Id}}"> {{item.Name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Committee:</label>
+                        <select class="form-control" ng-model="selectedCommittee" ng-change="onClick('ChangeCommittee'); takenCommittee()">
+                            <option ng-repeat="item in CommitteeList" value="{{item.Id}}"> {{item.Name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Assigned Members:</label>
+                        <input type="checkbox" ng-model="assignedMembers" />
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-click="onClick('SearchMember',selectedCommittee)">Submit</button>
+                </form>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Member List</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th width="1%">Sl</th>
+                                        <th>Name</th>
+                                        <th width="1%">Phone</th>
+                                        <th>Email</th>
+                                        <th>Address</th>
+                                        <th width="1%">Committe&nbsp;Appointment</th>
+                                        <th width="15%" class="text-center">Set&nbsp;Type</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in MemberList">
+                                        <td ng-show="item.Validation==false || item.Validation==null">{{$index+1}}</td>
+                                        @*<td ng-show="item.Validation==false || item.Validation==null"><input type="checkbox" ng-checked="selectedCommittee == item.CommitteeId" ng-model="ChangeCommitteAccess" ng-click="onClick('ChangeCommitteAccess',item)" /></td>*@
+                                        <td ng-show="item.Validation==false || item.Validation==null">{{item.Name}}</td>
+                                        <td ng-show="item.Validation==false || item.Validation==null">{{item.Phone}}</td>
+                                        <td ng-show="item.Validation==false || item.Validation==null">{{item.Email}}</td>
+                                        <td ng-show="item.Validation==false || item.Validation==null">{{item.Address}}</td>
+                                        <td ng-show="item.Validation==false || item.Validation==null">{{item.RoleName}}</td>
+                                        <td ng-show="item.Validation==false || item.Validation==null">
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <select class="form-control" ng-model="ChangeCommitteeRole" ng-change="takenRole(ChangeCommitteeRole);onClick('ChangeCommitteeRole',item)">
+                                                            <option ng-repeat="it in RoleList" value="{{it.Id}}"> {{it.Name}} </option>
+                                                        </select>
+                                                    </td>
+                                                    <td ng-show="item.Validation==null">
+                                                        <button class="btn btn-sm btn-danger" ng-click="remove();onClick('ChangeCommitteeRole',item)"><i class="fa fa-trash"></i></button>
+                                                     </td>
+                                                    <td ng-show="item.Validation==null">
+                                                        <label class="badge badge-success" ng-show="selectedCommittee==item.UserCommitteeId">Has Access</label>
+                                                        <button class="btn btn-sm btn-success" ng-show="selectedCommittee!=item.UserCommitteeId" ng-click="onClick('Save Web Access',item);onClick('ChangeButton',$index)"><i class="fa fa-plus"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot></tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+                <!-- /.row -->
+                @*Insert member*@
+                <div class="modal fade" id="setAccess-modal">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Set Access</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label ng-hide="editable">Select Committee:</label>
+                                        <select ng-hide="editable" class="form-control" ng-model="setCommittee" ng-change="onClick('ChangeCommittee')">
+                                            <option ng-repeat="item in CommitteeList" value="{{item.Id}}"> {{item.Name}}</option>
+                                        </select>
+                                        <label ng-show="editable">Committee</label>
+                                        <input ng-show="editable" ng-model="setTole.Name" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Member:</label>
+                                        <label ng-model="setRole.Name">{{setRole.Name}}</label>
+                                        <select class="form-control" ng-model="setMember">
+                                            <option ng-repeat="item in MemberListForSetCommittee" value="{{item.Id}}"> {{item.Name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Select Role:</label>
+                                        <select ng-model="setRole.RoleId" class="form-control">
+                                            <option ng-selected="setRole.RoleId == item.Id" ng-repeat="item in  RoleList" value="{{item.Id}}"> {{item.Name}}</option>
+                                        </select>
+                                        <input ng-model="setRole.RoleId" type="radio" ng-repeat="item in  RoleList" value="{{item.Id}}" />{{setRole.RoleId}}
+                                        <select ng-model="setRole.RoleId" ng-options="it as it.Name for it in RoleList"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Status:</label>
+                                        <input type="checkbox" ng-model="setRole.Status" />
+                                    </div>
+
+                                    <!-- /.card-body -->
+                                    <!-- /.card-footer -->
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button data-toggle="tooltip" title="Save" type="button" class="btn btn-success pull-right" data-dismiss="modal" ng-click="onClick('SaveAccess')"><i class="fa fa-save"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+            </div>
+
+            @*EndContext Insert Member Model*@
+
+            @*Update member modal*@
+
+            @* endupdate member modal*@
+        </section>
+    </div><!-- /.card-body -->
+</div>
+
+
+@section Scripts
+    {
+    <script src="~/scripts/Angular/appModul.js"></script>
+    <script src="~/scripts/Angular/Committee/CommitteeService.js"></script>
+    <script src="~/scripts/Angular/CommitteeMember/CommitteeMemberService.js"></script>
+    <script src="~/scripts/Angular/CommitteeMember/CommitteeMemberController.js"></script>
+    <script src="~/scripts/Angular/Role/RoleService.js"></script>
+    <script src="~/scripts/Angular/Role/RoleController.js"></script>
+    <script src="~/scripts/Angular/Organization/OrganizationService.js"></script>
+}

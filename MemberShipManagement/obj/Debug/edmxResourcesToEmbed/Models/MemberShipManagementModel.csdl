@@ -1,0 +1,683 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MembershipManagementDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Committee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Organization_Id" Type="Int32" Nullable="false" />
+    <Property Name="Created_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Duration_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Committee_Member" Relationship="Self.FK_Committee_Member_Committee" FromRole="Committee" ToRole="Committee_Member" />
+    <NavigationProperty Name="Organization" Relationship="Self.FK_Committee_Organizations" FromRole="Committee" ToRole="Organizations" />
+    <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_Committee" FromRole="Committee" ToRole="Task" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_Committees" FromRole="Committee" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Committee_Member">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Committee_Id" Type="Int32" />
+    <Property Name="Member_Id" Type="Int32" Nullable="false" />
+    <Property Name="Role_Id" Type="Int32" />
+    <Property Name="Accessed_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="AccessedBy_Id" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Committee" Relationship="Self.FK_Committee_Member_Committee" FromRole="Committee_Member" ToRole="Committee" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_Committee_Member_Committee_Role" FromRole="Committee_Member" ToRole="Role" />
+    <NavigationProperty Name="Member" Relationship="Self.FK_Committee_Member_Members" FromRole="Committee_Member" ToRole="Members" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Committee_Member_User" FromRole="Committee_Member" ToRole="User" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Division_Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Bn_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="lat" Type="Double" Nullable="false" />
+    <Property Name="lon" Type="Double" Nullable="false" />
+    <Property Name="website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Division" Relationship="Self.FK_Districts_Divisions" FromRole="Districts" ToRole="Divisions" />
+    <NavigationProperty Name="Members" Relationship="Self.FK_Members_Districts" FromRole="Districts" ToRole="Members" />
+    <NavigationProperty Name="Upazilas" Relationship="Self.FK_Upazilas_Districts" FromRole="Districts" ToRole="Upazilas" />
+  </EntityType>
+  <EntityType Name="Division">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Bn_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Districts" Relationship="Self.FK_Districts_Divisions" FromRole="Divisions" ToRole="Districts" />
+    <NavigationProperty Name="Members" Relationship="Self.FK_Members_Divisions" FromRole="Divisions" ToRole="Members" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Created_Date" Type="DateTime" Precision="3" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Organization_Id" Type="Int32" Nullable="false" />
+    <Property Name="Division_Id" Type="Int32" />
+    <Property Name="District_Id" Type="Int32" />
+    <Property Name="Upazilas_Id" Type="Int32" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentFee" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Committee_Member" Relationship="Self.FK_Committee_Member_Members" FromRole="Members" ToRole="Committee_Member" />
+    <NavigationProperty Name="District" Relationship="Self.FK_Members_Districts" FromRole="Members" ToRole="Districts" />
+    <NavigationProperty Name="Division" Relationship="Self.FK_Members_Divisions" FromRole="Members" ToRole="Divisions" />
+    <NavigationProperty Name="Organization" Relationship="Self.FK_Members_Organizations" FromRole="Members" ToRole="Organizations" />
+    <NavigationProperty Name="Upazila" Relationship="Self.FK_Members_Upazilas" FromRole="Members" ToRole="Upazilas" />
+    <NavigationProperty Name="Task_Member" Relationship="Self.FK_Task_Member_Members" FromRole="Members" ToRole="Task_Member" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK_Transaction_PaidBy" FromRole="Members" ToRole="Transaction" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_Members" FromRole="Members" ToRole="User" />
+    <NavigationProperty Name="Member_Service" Relationship="MembershipManagementDBModel.FK_Member_Service_Members" FromRole="Member" ToRole="Member_Service" />
+  </EntityType>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy_Id" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy_Id" Type="Int32" />
+    <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Committees" Relationship="Self.FK_Committee_Organizations" FromRole="Organizations" ToRole="Committee" />
+    <NavigationProperty Name="Members" Relationship="Self.FK_Members_Organizations" FromRole="Organizations" ToRole="Members" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK_Transaction_Organization" FromRole="Organizations" ToRole="Transaction" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_Organizations" FromRole="Organizations" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Committee_Member" Relationship="Self.FK_Committee_Member_Committee_Role" FromRole="Role" ToRole="Committee_Member" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Member_Service" Relationship="MembershipManagementDBModel.FK_Member_Service_Service" FromRole="Service" ToRole="Member_Service" />
+  </EntityType>
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Task_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Created_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="AssignedBy_Id" Type="Int32" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AppointedTo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="Committee_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Committee" Relationship="Self.FK_Task_Committee" FromRole="Task" ToRole="Committee" />
+    <NavigationProperty Name="TaskAgendas" Relationship="Self.FK_Agenda_Task" FromRole="Task" ToRole="TaskAgenda" />
+    <NavigationProperty Name="Task_Member" Relationship="Self.FK_Task_Member_Task" FromRole="Task" ToRole="Task_Member" />
+  </EntityType>
+  <EntityType Name="Task_Member">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Member_Id" Type="Int32" />
+    <Property Name="Task_Id" Type="Int32" />
+    <NavigationProperty Name="Member" Relationship="Self.FK_Task_Member_Members" FromRole="Task_Member" ToRole="Members" />
+    <NavigationProperty Name="Task" Relationship="Self.FK_Task_Member_Task" FromRole="Task_Member" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="TaskAgenda">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Task_Id" Type="Int32" Nullable="false" />
+    <Property Name="Agenda" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Task" Relationship="Self.FK_Agenda_Task" FromRole="TaskAgenda" ToRole="Task" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaidBy_Id" Type="Int32" Nullable="false" />
+    <Property Name="ReceivedBy_Id" Type="Int32" Nullable="false" />
+    <Property Name="Organization_Id" Type="Int32" Nullable="false" />
+    <Property Name="Billing_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Received_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AmountPaid" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="MonthlyFee" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Member" Relationship="Self.FK_Transaction_PaidBy" FromRole="Transaction" ToRole="Members" />
+    <NavigationProperty Name="Organization" Relationship="Self.FK_Transaction_Organization" FromRole="Transaction" ToRole="Organizations" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Transaction_ReceivedBy" FromRole="Transaction" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Upazila">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="District_Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Bn_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="District" Relationship="Self.FK_Upazilas_Districts" FromRole="Upazilas" ToRole="Districts" />
+    <NavigationProperty Name="Members" Relationship="Self.FK_Members_Upazilas" FromRole="Upazilas" ToRole="Members" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="Member_Id" Type="Int32" />
+    <Property Name="Committee_Id" Type="Int32" />
+    <Property Name="Organization_Id" Type="Int32" />
+    <NavigationProperty Name="Committee" Relationship="Self.FK_User_Committees" FromRole="User" ToRole="Committee" />
+    <NavigationProperty Name="Committee_Member" Relationship="Self.FK_Committee_Member_User" FromRole="User" ToRole="Committee_Member" />
+    <NavigationProperty Name="Member" Relationship="Self.FK_User_Members" FromRole="User" ToRole="Members" />
+    <NavigationProperty Name="Organization" Relationship="Self.FK_User_Organizations" FromRole="User" ToRole="Organizations" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK_Transaction_ReceivedBy" FromRole="User" ToRole="Transaction" />
+    <NavigationProperty Name="MemberServiceBills" Relationship="MembershipManagementDBModel.FK_MemberServiceBill_User" FromRole="User" ToRole="MemberServiceBill" />
+  </EntityType>
+  <EntityType Name="CommitteeMemberView">
+    <Key>
+      <PropertyRef Name="RId" />
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Gender" />
+    </Key>
+    <Property Name="RId" Type="Int64" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="Committee_Id" Type="Int32" />
+    <Property Name="Role_Id" Type="Int32" />
+    <Property Name="Accessed_Date" Type="DateTime" Precision="0" />
+    <Property Name="AccessedBy_Id" Type="Int32" />
+    <Property Name="MemberCommiitteStatus" Type="Boolean" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoleStatus" Type="Boolean" />
+    <Property Name="CommitteeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CommitteeStatus" Type="Boolean" />
+    <Property Name="CommitteMemberId" Type="Int32" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserStatus" Type="Boolean" />
+    <Property Name="UserCommitteId" Type="Int32" />
+    <Property Name="UserOrganizationId" Type="Int32" />
+  </EntityType>
+  <Association Name="FK_Committee_Member_Committee">
+    <End Role="Committee" Type="Self.Committee" Multiplicity="0..1" />
+    <End Role="Committee_Member" Type="Self.Committee_Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Committee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Committee_Member">
+        <PropertyRef Name="Committee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Committee_Organizations">
+    <End Role="Organizations" Type="Self.Organization" Multiplicity="1" />
+    <End Role="Committee" Type="Self.Committee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organizations">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Committee">
+        <PropertyRef Name="Organization_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_Committee">
+    <End Role="Committee" Type="Self.Committee" Multiplicity="1" />
+    <End Role="Task" Type="Self.Task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Committee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task">
+        <PropertyRef Name="Committee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Committees">
+    <End Role="Committee" Type="Self.Committee" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Committee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Committee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Committee_Member_Committee_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Committee_Member" Type="Self.Committee_Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Committee_Member">
+        <PropertyRef Name="Role_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Committee_Member_Members">
+    <End Role="Members" Type="Self.Member" Multiplicity="1" />
+    <End Role="Committee_Member" Type="Self.Committee_Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Members">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Committee_Member">
+        <PropertyRef Name="Member_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Committee_Member_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Committee_Member" Type="Self.Committee_Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Committee_Member">
+        <PropertyRef Name="AccessedBy_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Districts_Divisions">
+    <End Role="Divisions" Type="Self.Division" Multiplicity="1" />
+    <End Role="Districts" Type="Self.District" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Divisions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Districts">
+        <PropertyRef Name="Division_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Members_Districts">
+    <End Role="Districts" Type="Self.District" Multiplicity="0..1" />
+    <End Role="Members" Type="Self.Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Districts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Members">
+        <PropertyRef Name="District_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Upazilas_Districts">
+    <End Role="Districts" Type="Self.District" Multiplicity="1" />
+    <End Role="Upazilas" Type="Self.Upazila" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Districts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Upazilas">
+        <PropertyRef Name="District_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Members_Divisions">
+    <End Role="Divisions" Type="Self.Division" Multiplicity="0..1" />
+    <End Role="Members" Type="Self.Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Divisions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Members">
+        <PropertyRef Name="Division_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Members_Organizations">
+    <End Role="Organizations" Type="Self.Organization" Multiplicity="1" />
+    <End Role="Members" Type="Self.Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organizations">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Members">
+        <PropertyRef Name="Organization_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Members_Upazilas">
+    <End Role="Upazilas" Type="Self.Upazila" Multiplicity="0..1" />
+    <End Role="Members" Type="Self.Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Upazilas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Members">
+        <PropertyRef Name="Upazilas_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_Member_Members">
+    <End Role="Members" Type="Self.Member" Multiplicity="0..1" />
+    <End Role="Task_Member" Type="Self.Task_Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Members">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task_Member">
+        <PropertyRef Name="Member_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_PaidBy">
+    <End Role="Members" Type="Self.Member" Multiplicity="1" />
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Members">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="PaidBy_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Members">
+    <End Role="Members" Type="Self.Member" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Members">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Member_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_Organization">
+    <End Role="Organizations" Type="Self.Organization" Multiplicity="1" />
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organizations">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="Organization_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Organizations">
+    <End Role="Organizations" Type="Self.Organization" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organizations">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Organization_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Agenda_Task">
+    <End Role="Task" Type="Self.Task" Multiplicity="1" />
+    <End Role="TaskAgenda" Type="Self.TaskAgenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskAgenda">
+        <PropertyRef Name="Task_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Task_Member_Task">
+    <End Role="Task" Type="Self.Task" Multiplicity="0..1" />
+    <End Role="Task_Member" Type="Self.Task_Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Task">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Task_Member">
+        <PropertyRef Name="Task_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_ReceivedBy">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="ReceivedBy_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MembershipManagementDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Committees" EntityType="Self.Committee" />
+    <EntitySet Name="Committee_Member" EntityType="Self.Committee_Member" />
+    <EntitySet Name="Districts" EntityType="Self.District" />
+    <EntitySet Name="Divisions" EntityType="Self.Division" />
+    <EntitySet Name="Members" EntityType="Self.Member" />
+    <EntitySet Name="Organizations" EntityType="Self.Organization" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Services" EntityType="Self.Service" />
+    <EntitySet Name="Tasks" EntityType="Self.Task" />
+    <EntitySet Name="Task_Member" EntityType="Self.Task_Member" />
+    <EntitySet Name="TaskAgendas" EntityType="Self.TaskAgenda" />
+    <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+    <EntitySet Name="Upazilas" EntityType="Self.Upazila" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="CommitteeMemberViews" EntityType="Self.CommitteeMemberView" />
+    <AssociationSet Name="FK_Committee_Member_Committee" Association="Self.FK_Committee_Member_Committee">
+      <End Role="Committee" EntitySet="Committees" />
+      <End Role="Committee_Member" EntitySet="Committee_Member" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Committee_Organizations" Association="Self.FK_Committee_Organizations">
+      <End Role="Organizations" EntitySet="Organizations" />
+      <End Role="Committee" EntitySet="Committees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Committee" Association="Self.FK_Task_Committee">
+      <End Role="Committee" EntitySet="Committees" />
+      <End Role="Task" EntitySet="Tasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Committees" Association="Self.FK_User_Committees">
+      <End Role="Committee" EntitySet="Committees" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Committee_Member_Committee_Role" Association="Self.FK_Committee_Member_Committee_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Committee_Member" EntitySet="Committee_Member" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Committee_Member_Members" Association="Self.FK_Committee_Member_Members">
+      <End Role="Members" EntitySet="Members" />
+      <End Role="Committee_Member" EntitySet="Committee_Member" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Committee_Member_User" Association="Self.FK_Committee_Member_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Committee_Member" EntitySet="Committee_Member" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Districts_Divisions" Association="Self.FK_Districts_Divisions">
+      <End Role="Divisions" EntitySet="Divisions" />
+      <End Role="Districts" EntitySet="Districts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Members_Districts" Association="Self.FK_Members_Districts">
+      <End Role="Districts" EntitySet="Districts" />
+      <End Role="Members" EntitySet="Members" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Upazilas_Districts" Association="Self.FK_Upazilas_Districts">
+      <End Role="Districts" EntitySet="Districts" />
+      <End Role="Upazilas" EntitySet="Upazilas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Members_Divisions" Association="Self.FK_Members_Divisions">
+      <End Role="Divisions" EntitySet="Divisions" />
+      <End Role="Members" EntitySet="Members" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Members_Organizations" Association="Self.FK_Members_Organizations">
+      <End Role="Organizations" EntitySet="Organizations" />
+      <End Role="Members" EntitySet="Members" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Members_Upazilas" Association="Self.FK_Members_Upazilas">
+      <End Role="Upazilas" EntitySet="Upazilas" />
+      <End Role="Members" EntitySet="Members" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Member_Members" Association="Self.FK_Task_Member_Members">
+      <End Role="Members" EntitySet="Members" />
+      <End Role="Task_Member" EntitySet="Task_Member" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_PaidBy" Association="Self.FK_Transaction_PaidBy">
+      <End Role="Members" EntitySet="Members" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Members" Association="Self.FK_User_Members">
+      <End Role="Members" EntitySet="Members" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_Organization" Association="Self.FK_Transaction_Organization">
+      <End Role="Organizations" EntitySet="Organizations" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Organizations" Association="Self.FK_User_Organizations">
+      <End Role="Organizations" EntitySet="Organizations" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Agenda_Task" Association="Self.FK_Agenda_Task">
+      <End Role="Task" EntitySet="Tasks" />
+      <End Role="TaskAgenda" EntitySet="TaskAgendas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Task_Member_Task" Association="Self.FK_Task_Member_Task">
+      <End Role="Task" EntitySet="Tasks" />
+      <End Role="Task_Member" EntitySet="Task_Member" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_ReceivedBy" Association="Self.FK_Transaction_ReceivedBy">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <EntitySet Name="Member_Service" EntityType="MembershipManagementDBModel.Member_Service" />
+    <AssociationSet Name="FK_Member_Service_Members" Association="MembershipManagementDBModel.FK_Member_Service_Members">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="Member_Service" EntitySet="Member_Service" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Member_Service_Service" Association="MembershipManagementDBModel.FK_Member_Service_Service">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="Member_Service" EntitySet="Member_Service" />
+    </AssociationSet>
+    <EntitySet Name="MemberServiceBills" EntityType="MembershipManagementDBModel.MemberServiceBill" />
+    <AssociationSet Name="FK_MemberServiceBill_Member_Service" Association="MembershipManagementDBModel.FK_MemberServiceBill_Member_Service">
+      <End Role="Member_Service" EntitySet="Member_Service" />
+      <End Role="MemberServiceBill" EntitySet="MemberServiceBills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberServiceBill_User" Association="MembershipManagementDBModel.FK_MemberServiceBill_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="MemberServiceBill" EntitySet="MemberServiceBills" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Member_Service">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Member_Id" Type="Int32" Nullable="false" />
+    <Property Name="Service_Id" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Member" Relationship="MembershipManagementDBModel.FK_Member_Service_Members" FromRole="Member_Service" ToRole="Member" />
+    <NavigationProperty Name="Service" Relationship="MembershipManagementDBModel.FK_Member_Service_Service" FromRole="Member_Service" ToRole="Service" />
+    <NavigationProperty Name="MemberServiceBills" Relationship="MembershipManagementDBModel.FK_MemberServiceBill_Member_Service" FromRole="Member_Service" ToRole="MemberServiceBill" />
+  </EntityType>
+  <Association Name="FK_Member_Service_Members">
+    <End Type="MembershipManagementDBModel.Member" Role="Member" Multiplicity="1" />
+    <End Type="MembershipManagementDBModel.Member_Service" Role="Member_Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Member_Service">
+        <PropertyRef Name="Member_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Member_Service_Service">
+    <End Type="MembershipManagementDBModel.Service" Role="Service" Multiplicity="1" />
+    <End Type="MembershipManagementDBModel.Member_Service" Role="Member_Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Member_Service">
+        <PropertyRef Name="Service_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MemberServiceBill">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberService_Id" Type="Int32" Nullable="false" />
+    <Property Name="BillToPay" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="AmountPaid" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BillingDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Received_Date" Type="DateTime" Precision="3" />
+    <Property Name="ReceivedBy_Id" Type="Int32" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Member_Service" Relationship="MembershipManagementDBModel.FK_MemberServiceBill_Member_Service" FromRole="MemberServiceBill" ToRole="Member_Service" />
+    <NavigationProperty Name="User" Relationship="MembershipManagementDBModel.FK_MemberServiceBill_User" FromRole="MemberServiceBill" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_MemberServiceBill_Member_Service">
+    <End Type="MembershipManagementDBModel.Member_Service" Role="Member_Service" Multiplicity="1" />
+    <End Type="MembershipManagementDBModel.MemberServiceBill" Role="MemberServiceBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member_Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MemberServiceBill">
+        <PropertyRef Name="MemberService_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberServiceBill_User">
+    <End Type="MembershipManagementDBModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="MembershipManagementDBModel.MemberServiceBill" Role="MemberServiceBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MemberServiceBill">
+        <PropertyRef Name="ReceivedBy_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

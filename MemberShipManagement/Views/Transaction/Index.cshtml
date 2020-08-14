@@ -1,0 +1,317 @@
+﻿
+@{
+    ViewBag.Title = "Transaction";
+    ViewBag.TitleIcon = "transaction.png";
+    ViewBag.NavbarTransaction = "active";
+    Layout = "~/Views/Shared/_MainContent.cshtml";
+}
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    table, td, th {
+        border: 1px solid black;
+    }
+</style>
+<div ng-app="myApp" ng-controller="transactionCtrl">
+
+    <form class="form-inline">
+        <div class="form-group">
+            <label class="control-label">Select Organization</label>
+            <select class="form-control" ng-model="selectedOrganization" @*ng-change="onClick('OrganizationChange',selectedOrganization)"*@>
+                <option ng-repeat="item in OrganizationLists" value="{{item.Id}}"> {{item.Name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Date</label>
+            <input type="month" class="form-control" ng-model="monthBill" />
+        </div>
+        <button class="btn btn-success" ng-click="onClick('searchMonthlyBill',monthBill)"><i class="fa fa-search"></i></button>
+       
+    </form>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-lg-12">
+            <div class="card card-gray-dark card-tabs">
+                <div class="card-header p-0 pt-1">
+                    <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Monthly Fee Bill</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Monthly Service Bill</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="overlay d-flex justify-content-center align-items-center" ng-show="$scope.overlay==true">
+                        <i class="fas fa-2x fa-sync fa-spin"></i>
+                    </div>
+                    <div class="tab-content" id="custom-tabs-one-tabContent">
+                        <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+                            <div class="col-md-12">
+                                <div class="table table-responsive">
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th width="1%">Sl</th>
+                                                <th>Name</th>
+                                                <th>Billing&nbsp;Date</th>
+                                                <th width="1%">Payment&nbsp;Status</th>
+                                                <th width="1%">Due&nbsp;Amount</th>
+                                                <th width="1%">Bill</th>
+                                                <th width="1%" class="text-center">Action@*<button class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#amount-modal"><i class="fa fa-plus">Amount</i></button>*@</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in TransactionList">
+                                                <td>{{$index+1}}</td>
+                                                <td>
+                                                    {{item.MemberName}}
+                                                </td>
+                                                <td>{{ToDate(item.Billing_Date)}}</td>
+                                                <td class="text-center">{{item.TransactionStatus}}</td>
+                                                <td class="text-center text-green" ng-show="item.GetDueAmount>0">{{item.GetDueAmount}} Have To Pay</td>
+                                                <td class="text-center text-red" ng-show="item.GetMonthlyPayment==0">{{item.GetDueAmount}} Not Paid Yet</td>
+                                                <td class="text-center text-black-50" ng-show="item.GetDueAmount==0 && item.GetMonthlyPayment>0">{{item.GetDueAmount}} No Due</td>
+                                                <td class="text-center text-black-50" ng-show="item.GetDueAmount<0">{{item.GetDueAmount}} Advanced Paid</td>
+                                                <td class="text-center">{{item.GetMonthlyPayment}}</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" data-toggle="modal" data-target="#transaction-modal" title="Add&nbsp;Payment" ng-hide="item.GetMonthlyPayment>0" class="btn btn-info" ng-click="onClick('Set Transaction',item)"><i class="fa fa-plus"></i></button>
+                                                        <button type="button" data-toggle="tooltip" title="View&nbsp;Transactions" class="btn btn-warning" ng-click="onClick('See Transaction List',item)"><i class="fa fa-eye"></i></button>
+                                                        <button type="button" data-toggle="modal" data-target="#transaction-modal" class="btn btn-primary" ng-click="onClick('EditTransaction',item)"> <i class="fa fa-edit"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot><tr></tr></tfoot>
+                                    </table>
+
+                                </div>
+
+                                <div class="col-md-3" ng-show="showPersonTransaction==true">
+                                    <div class="card card-primary  maximized-card">
+                                        <div class="card-header">
+                                            <h1>Transaction Of {{MemberName}}</h1>
+                                            <button class="btn btn-info" ng-click="print(printTable)"><i class="fa fa-print"></i></button>    
+                                            <div class="card-tools">
+                                                <button type="button" class="btn btn-tool" ng-click="onClick('Close showPersonTransaction')">
+                                                    <i class="fas fa-window-close "></i>
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                        <!-- /.card-tools -->
+                                        <div class="card-body">
+                                            <table class="table table-bordered table-striped" id="printTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="1%">Sl</th>
+                                                        <th>Payment Date</th>
+                                                        <th width="1%">Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="item in PersonTransation">
+                                                        <td>{{$indedx+1}}</td>
+                                                        <td>{{ToDate(item.Billing_Date)}}</td>
+                                                        <td>{{item.Amount}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="float-right">
+                                                <b>Total Payment:</b> {{PersonTransation[0].TotalPayment}}
+                                            </div>
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </div>
+                                    <!-- /.card-header -->
+                                </div>
+                                <div class="modal fade" id="transaction-modal">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Bill Payment Of {{MemberName}}</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-horizontal">
+                                                    <div class="card-body">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-4 control-label">Payment&nbsp;Fee</label>
+                                                            <div class="col-sm-8">
+                                                                @*<select class="form-control" ng-model="AmountToPayBill"
+                ng-options="it.Id as it.Amount for it in AmountToPay"></select>*@
+                                                                <input type="number" ng-model="PayementFee" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-4 control-label">Received&nbsp;Amount</label>
+                                                            <div class="col-sm-8">
+                                                                <input type="number" ng-model="RecievedAmount" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-group">
+                                                            <label class="col-sm-4 control-label">Bill Month</label>
+                                                            <input type="month" ng-model="monthBill" class="form-control col-sm-4" disabled/>
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><i>To</i></span>
+                                                            </div>
+                                                            <input type="month" ng-model="BillingToDate" ng-init="BillingToDate=monthBill" class="form-control col-sm-4" />
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <!-- /.card-body -->
+                                                    <!-- /.card-footer -->
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button data-toggle="tooltip" title="Save" type="button" class="btn btn-success pull-right" ng-disabled="!monthBill || !BillingToDate || !PayementFee || (monthBill>BillingToDate)" data-dismiss="modal" ng-click="onClick('Save Transaction')"><i class="fa fa-save"></i></button>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+
+                                <div class="modal fade" id="amount-modal">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Add Amount To Pay</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <form class="form-horizontal">
+                                                    <div class="card-body">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-3 control-label">Amount</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="number" ng-model="AmountToPay" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.card-body -->
+                                                    <!-- /.card-footer -->
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button data-toggle="tooltip" title="Save" type="button" class="btn btn-success pull-right" data-dismiss="modal" ng-click="onClick('Save Amount To Pay')"><i class="fa fa-save"></i></button>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+                            <form class="form-inline">
+                                <div class="input-group mb-3">
+                                    <select class="form-control" ng-model="selectedService">
+                                        <option ng-repeat="item in ServiceList" value="{{item.Id}}"> {{item.Name}}</option>
+                                    </select>
+                                    <span class="input-group-append">
+                                        <button type="button" class="btn btn-flat bg-gradient-gray" ng-click="onClick('ChangeService',selectedService)"><i class="fas fa-search"></i></button>
+                                    </span>
+                                </div>
+                            </form>
+                            <div class="table table-responsive">
+                                <table class="table table-hover table-striped table-condensed table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th width="1%" class="text-center">SL</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th width="1%" class="text-center">Recieved&nbsp;Amount</th>
+                                            <th width="1%" class="text-center">Bill</th>
+                                            <th width="1%" class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in ServiceListBill">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{item.MemberName}}</td>
+                                            <td>{{item.Email}}</td>
+                                            <td>{{item.Phone}}</td>
+                                            <td class="text-center">{{item.GetDueAmount}}</td>
+                                            <td>{{item.GetAmountToPay}}</td>
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn bg-gradient-green" data-toggle="modal" href="#serviceBill-modal"  ng-hide="item.GetAmountToPay>0" ng-click="onClick('Select Service Bill',item)">Generate&nbsp;Bill</button>
+                                                    <button type="button" class="btn bg-gradient-indigo" data-toggle="modal" href="#serviceBill-modal" ng-hide="item.GetDueAmount>0 || item.GetAmountToPay==0" ng-click="onClick('Select Service Bill',item)" >Pay</button>
+                                                    <button type="button" class="btn bg-gradient-blue" data-toggle="modal" href="#serviceBill-modal" ng-hide="item.GetAmountToPay==0" ng-click="onClick('Select Service Bill',item)"><i class="fa fa-edit"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="serviceBill-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Save Service Bill/Payment</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="control-label">Recieved Amount</label>
+                                <input type="text" ng-model="ServicePaymentAmount" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Service Bill</label>
+                                <input type="text" ng-model="ServiceBill" class="form-control" />
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <!-- /.card-footer -->
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button data-toggle="tooltip" title="Save" type="button" class="btn btn-success pull-right" data-dismiss="modal" ng-disabled="!ServiceBill" ng-click="onClick('Save Service Bill')"><i class="fa fa-save"></i></button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+
+
+
+@section Scripts
+    {
+    <script src="~/scripts/Angular/appModul.js"></script>
+    <script src="~/scripts/Angular/Transaction/TransactionService.js"></script>
+    <script src="~/scripts/Angular/Transaction/TransactionController.js"></script>
+    <script src="~/scripts/Angular/Organization/OrganizationService.js"></script>
+    <script src="~/scripts/Angular/Organization/OrganizationController.js"></script>
+    <script src="~/scripts/Angular/Member/MemberService.js"></script>
+    <script src="~/scripts/Angular/Member/MemberController.js"></script>
+    <script src="~/scripts/Angular/Service/ServiceService.js"></script>
+}
+
+
+
+

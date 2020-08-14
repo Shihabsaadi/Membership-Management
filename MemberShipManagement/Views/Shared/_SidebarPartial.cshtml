@@ -1,0 +1,128 @@
+﻿<aside class="main-sidebar sidebar-dark-cyan elevation-4">
+    <!-- Brand Logo -->
+    <a href="~/Member/Index" class="brand-link">
+        <img src="../../dist/img/brand.png"
+             alt="AdminLTE Logo"
+             class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light"><i class="fa fa-gear"></i></span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user (optional) -->
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                 with font-awesome or any other icon font library -->
+                @*<li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Manage
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                        </ul>
+                    </li>*@
+                @if (User.IsInRole("SuperAdmin"))
+                {
+                    <li class="nav-item">
+                        <a href="/Organization/Index" class="nav-link @ViewBag.NavbarOrganization">
+                            <i class="fas fa-building nav-icon"></i>
+                            <p>Organization</p>
+                        </a>
+                    </li>
+                }
+                @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a href="/Role/Index" class="nav-link @ViewBag.NavbarRole">
+                            <i class="fa fa-user-cog nav-icon"></i>
+                            <p>Role</p>
+                        </a>
+                    </li>
+                }
+                @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a href="/Committee/Index" class="nav-link  @ViewBag.NavbarCommittee">
+                            <i class="fas fa-users nav-icon"></i>
+                            <p>Committee</p>
+                        </a>
+                    </li>
+                }
+                @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a href="/Member/Index" class="nav-link @ViewBag.NavbarMember">
+                            <i class="fas fa-user nav-icon"></i>
+                            <p>Member</p>
+                        </a>
+                    </li>
+                }
+                @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a href="/SetAccess/Index" class="nav-link @ViewBag.NavbarAccess">
+                            <i class="fa fa-lock nav-icon"></i>
+                            <p>Set Access</p>
+                        </a>
+                    </li>
+                }
+                @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a href="/Service/Index" class="nav-link @ViewBag.NavbarService">
+                            <i class="fa fa-cubes nav-icon"></i>
+                            <p>Service</p>
+                        </a>
+                    </li>
+                }
+                @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a href="/Transaction/Index" class="nav-link  @ViewBag.NavbarTransaction">
+                            <i class="fas fa-comments-dollar nav-icon"></i>
+                            <p>Transaction</p>
+                        </a>
+                    </li>
+                }
+                @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a href="/Task/Index" class="nav-link @ViewBag.NavbarTask">
+                            <i class="fas fa-tasks nav-icon"></i>
+                            <p>Task</p>
+                        </a>
+                    </li>
+                }
+                @if (User.IsInRole("Admin") || User.IsInRole("Member"))
+                {
+                    <li class="nav-item">
+                        <a href="/MyBill/Index" class="nav-link  @ViewBag.NavbarBills">
+                            <i class="fas fa-dollar-sign nav-icon"></i>
+                            <p>My Bills</p>
+                        </a>
+                    </li>
+
+                }
+                @if (User.IsInRole("SuperAdmin"))
+                {
+                    <li class="nav-item">
+                        <a href="/Security/Index" class="nav-link @ViewBag.NavbarSecurity">
+                            <i class="fas fa-user-secret nav-icon"></i>
+                            <p>Security</p>
+                        </a>
+                    </li>
+                }
+             
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

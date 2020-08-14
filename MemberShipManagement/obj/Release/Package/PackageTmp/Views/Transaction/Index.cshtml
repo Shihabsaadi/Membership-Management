@@ -1,0 +1,228 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainContent.cshtml";
+}
+
+<div class="card card-primary" ng-app="myApp">
+    <div class="card-header">
+        <h3 class="card-title">Transaction List </h3>
+    </div>
+    <div class="card-body" ng-controller="transactionCtrl">
+        <form  class="form-inline text-center">
+            <div class="form-group">
+                <label class="control-label">Select Organization</label>
+                <select class="form-control" ng-model="selectedOrganization" @*ng-change="onClick('OrganizationChange',selectedOrganization)"*@>
+                    <option ng-repeat="item in OrganizationLists" value="{{item.Id}}"> {{item.Name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Date</label>
+                <input type="month" class="form-control" ng-model="monthBill" />
+            </div>
+                <button class="btn btn-success" ng-click="onClick('searchMonthlyBill',monthBill)" ><i class="fa fa-search"></i></button> 
+         </form>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th width="1%">Sl</th>
+                    <th>Name</th>
+                    <th>Last&nbsp;Date</th>
+                    <th width="1%">Payment&nbsp;Status</th>
+                    <th width="1%">Due&nbsp;Amount</th>
+                    <th width="1%">Bill</th>
+                    <th width="1%" class="text-center"><button class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#amount-modal"><i class="fa fa-plus">Amount</i></button></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in TransactionList">
+                    <td>{{$index+1}}</td>
+                    <td>
+                        {{item.MemberName}}
+                    </td>
+                    <td>{{ToDate(item.LastTransactionDate)}}</td>
+                    <td class="text-center">{{item.TransactionStatus}}</td>
+                    <td class="text-center text-green" ng-show="item.GetDueAmount>0" >{{item.GetDueAmount}} Have To Pay</td>
+                    <td class="text-center text-red" ng-show="item.GetMonthlyPayment==0">{{item.GetDueAmount}} Not Paid Yet</td>
+                    <td class="text-center text-black-50" ng-show="item.GetDueAmount==0 && item.GetMonthlyPayment>0">{{item.GetDueAmount}} No Due</td>
+                    <td class="text-center text-black-50" ng-show="item.GetDueAmount<0">{{item.GetDueAmount}} Advanced Paid</td>
+                     <td class="text-center">{{item.GetMonthlyPayment}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" data-toggle="modal" data-target="#transaction-modal" title="Add&nbsp;Payment" class="btn btn-info" ng-click="onClick('Set Transaction',item)"><i class="fa fa-plus"></i></button>
+                            <button type="button" data-toggle="tooltip" title="View&nbsp;Transactions" class="btn btn-warning" ng-click="onClick('See Transaction List',item)"><i class="fa fa-eye"></i></button>
+                            <button type="button"  data-toggle="modal" data-target="#transaction-modal" class="btn btn-primary" ng-click="onClick('EditTransaction',item)"> <i class="fa fa-edit"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot><tr></tr></tfoot>
+        </table>
+
+        <div class="col-md-3" ng-show="showPersonTransaction==true">
+            <div class="card card-primary  maximized-card">
+                <div class="card-header">
+                    <h1>Transaction Of {{MemberName}}</h1>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" ng-click="onClick('Close showPersonTransaction')">
+                            <i class="fas fa-window-close "></i>
+                        </button>
+                    </div>
+                    
+              </div>
+                    <!-- /.card-tools -->
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th width="1%">Sl</th>
+                                <th>Payment Date</th>
+                                <th width="1%">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in PersonTransation">
+                                <td>{{$indedx+1}}</td>
+                                <td>{{ToDate(item.Billing_Date)}}</td>
+                                <td>{{item.Amount}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="float-right">
+                        <b>Total Payment:</b> {{PersonTransation[0].TotalPayment}}
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                </div>
+                <!-- /.card-header -->
+               
+            </div>
+        
+
+        <div class="modal fade" id="transaction-modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Bill Payment Of {{MemberName}}</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 control-label">Received&nbsp;Amount</label>
+                                    <div class="col-sm-7">
+                                        <input type="number" ng-model="RecievedAmount" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 control-label">Bill Month</label>
+                                    <div class="col-sm-9">
+                                        <input  type="month" ng-model="BillingDate" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 control-label">Payment&nbsp;Fee</label>
+                                    <div class="col-sm-9">
+                                        @*<select class="form-control" ng-model="AmountToPayBill" 
+                                                ng-options="it.Id as it.Amount for it in AmountToPay"></select>*@
+                                        <input  type="number" ng-model="PayementFee" class="form-control" disabled/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 control-label">ElectricBill</label>
+                                    <div class="col-sm-9">
+                                        @*<select class="form-control" ng-model="AmountToPayBill"
+                                         ng-options="it.Id as it.Amount for it in AmountToPay"></select>*@
+                                        <input  type="number" ng-model="ElectricBill" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 control-label">GasBill</label>
+                                    <div class="col-sm-9">
+                                        @*<select class="form-control" ng-model="AmountToPayBill"
+                                       ng-options="it.Id as it.Amount for it in AmountToPay"></select>*@
+                                        <input type="number" ng-model="GasBill" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 control-label">OtherService</label>
+                                    <div class="col-sm-9">
+                                        @*<select class="form-control" ng-model="AmountToPayBill"
+                                        ng-options="it.Id as it.Amount for it in AmountToPay"></select>*@
+                                        <input  type="number" ng-model="OtherService" class="form-control"  />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-8 control-label">Total Amount To Pay:</label>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 control-label">Received:</label>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                            <!-- /.card-footer -->
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button data-toggle="tooltip" title="Save" type="button" class="btn btn-success pull-right" data-dismiss="modal" ng-click="onClick('Save Transaction')"><i class="fa fa-save"></i></button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+        <div class="modal fade" id="amount-modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Amount To Pay</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 control-label">Amount</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" ng-model="AmountToPay" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                            <!-- /.card-footer -->
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button data-toggle="tooltip" title="Save" type="button" class="btn btn-success pull-right" data-dismiss="modal" ng-click="onClick('Save Amount To Pay')"><i class="fa fa-save"></i></button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+    {
+    <script src="~/scripts/Angular/appModul.js"></script>
+    <script src="~/scripts/Angular/Transaction/TransactionService.js"></script>
+    <script src="~/scripts/Angular/Transaction/TransactionController.js"></script>
+    <script src="~/scripts/Angular/Organization/OrganizationService.js"></script>
+    <script src="~/scripts/Angular/Organization/OrganizationController.js"></script>
+    <script src="~/scripts/Angular/Member/MemberService.js"></script>
+    <script src="~/scripts/Angular/Member/MemberController.js"></script>
+}
+
+
+
+

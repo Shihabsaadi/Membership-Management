@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "My Account";
+    ViewBag.TitleIcon = "account.png";
+    Layout = "~/Views/Shared/_MainContent.cshtml";
+}
+<div class="card card-cyan  card-outline card-outline-tabs" ng-app="myApp" ng-controller="accountCtrl">
+    <div class="card-header p-0 border-bottom-0">
+        <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill" href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home" aria-selected="false">Change Password</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body">
+        <div class="tab-content" id="custom-tabs-three-tabContent">
+            <div class="tab-pane fade active show" id="custom-tabs-three-home" role="tabpanel" aria-labelledby="custom-tabs-three-home-tab">
+                <form class="form-horizontal">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-sm-2 control-label">Old&nbsp;Password</label>
+                            <div class="col-sm-7">
+                                <input type="password" ng-model="OldPassword" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 control-label">New&nbsp;Password</label>
+                            <div class="col-sm-7">
+                                <input type="password" ng-model="NewPassword" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 control-label">Confirm&nbsp;Password</label>
+                            <div class="col-sm-7">
+                                <input type="password" ng-model="ConfirmPassword" ng-keyup="onClick('Confirm Password')" class="form-control" />
+                            </div>
+                            <label class="text-blue">{{PasswordValidation}}</label>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="form-group">
+                        <button data-toggle="tooltip" title="Save"  class="btn btn-success pull-right" ng-disabled="!OldPassword || !NewPassword || !ConfirmPassword ||NewPassword != ConfirmPassword" ng-click="onClick('Save Password')"><i class="fa fa-save"></i></button>
+                    </div>
+                 </form>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+    </div>
+    <!-- /.card-footer -->
+    <!-- /.card -->
+</div>
+@section Scripts
+    {
+    <script src="~/scripts/Angular/appModul.js"></script>
+    <script src="~/scripts/Angular/Account/AccountService.js"></script>
+    <script src="~/scripts/Angular/Account/AccountController.js"></script>
+}
+

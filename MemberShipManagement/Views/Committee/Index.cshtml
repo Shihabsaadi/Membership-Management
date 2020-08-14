@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewBag.Title = "Committee";
+    ViewBag.TitleIcon = "committee.png";
+    ViewBag.NavbarCommittee = "active";
+    Layout = "~/Views/Shared/_MainContent.cshtml";
+}
+
+<section class="content" ng-app="myApp" ng-controller="committeeCtrl">
+    <div class="row">
+        <div class="col-12">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label class="control-label">Select Organization</label>
+                    <select class="form-control" ng-model="selectedOrganization" @*ng-change="onClick('OrganizationChange',selectedOrganization)"*@>
+                        <option ng-repeat="item in OrganizationLists" value="{{item.Id}}"> {{item.Name}}</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-sm btn-success" ng-click="onClick('SearchByOrganization',selectedOrganization)"><i class="fa fa-search"></i></button>
+            </div>
+            
+            <div class="card card-gray-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Committee List</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th width="1%">Sl</th>
+                                <th>Name</th>
+                                <th>Created Date</th>
+                                <th>Duration Date</th>
+                                <th width="1%">Status</th>
+                                <th width="1%" class="text-center"><button data-toggle="modal" href="#committee-modal" title="Create Committee" class="btn btn-sm btn-success" ng-click="onClick(Reset())"><i class="fa fa-plus-circle"></i></button></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in CommitteeList">
+                                <td>{{$index+1}}</td>
+                                <td>
+                                    {{item.Name}}
+                                </td>
+                                <td>{{ToDate(item.Created_Date)}}</td>
+                                <td>{{ToDate(item.Duration_Date)}}</td>
+                                <td>
+                                    <label ng-show="item.Status==1" class="badge badge-success">Active</label>
+                                    <label ng-show="item.Status!=1" class="badge badge-danger">In Active</label>
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a data-toggle="modal" href="#committee-modal" title="Edit Role" class="btn btn-sm btn-primary" ng-click="onClick('EditCommittee',item)"><i class="fa fa-edit"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+
+                    </table>
+                </div>
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    <div class="modal fade" id="committee-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Create Committee</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="card-body">
+                                <div class="form-group">
+                                    <label class="control-label">Select Organization</label>
+                                    <div class="">
+                                        <select class="form-control" ng-model="selectedOrganization" @*ng-change="onClick('OrganizationChange',selectedOrganization)"*@>
+                                            <option ng-repeat="item in OrganizationLists" value="{{item.Id}}"> {{item.Name}}</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                <div class="form-group">
+                                    <label class="control-label">Name</label>
+                                    <div class="">
+                                        <input ng-model="Name" type="text" class="form-control" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Duration&nbsp;Date</label>
+                                    <div class="">
+                                        <input ng-model="DurationDate" type="datetime" placeholder="DD-MM-YYYY" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Active</label>
+                                    <div class="">
+                                        <input ng-model="Status" type="checkbox">
+                                    </div>
+                                </div>
+                           
+                        </div>
+                        <!-- /.card-body -->
+                        <!-- /.card-footer -->
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button data-toggle="tooltip" title="Save" type="button" class="btn btn-success pull-right" data-dismiss="modal" ng-disabled="!selectedOrganization || !Name || !DurationDate" ng-click="onClick('SaveCommittee')"><i class="fa fa-save"></i></button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</section>
+@section Scripts
+    {
+    <script src="~/scripts/Angular/appModul.js"></script>
+    <script src="~/scripts/Angular/Committee/CommitteeService.js"></script>
+    <script src="~/scripts/Angular/Committee/committeController.js"></script>
+    <script src="~/scripts/Angular/Organization/OrganizationService.js"></script>
+}
+

@@ -1,0 +1,211 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainContent.cshtml";
+}
+<section ng-app="myApp" ng-controller="taskCtrl">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <form class="form-inline">
+                    <button class="btn {{GridView}}" ng-click="onClick('ViewType','GridView')"><i class="fa fa-th {{GridViewColor}}"></i></button>
+                    <button class="btn {{TableView}}" ng-click="onClick('ViewType','TableView')"><i class="fa fa-list {{TableViewColor}}"></i></button>
+                    <div class="form-group">
+                        <label class="control-label">Select Organization</label>
+                        <select class="form-control" ng-model="selectedOrganization" ng-change="onClick('OrganizationChange',selectedOrganization)">
+                            <option ng-repeat="item in OrganizationLists" value="{{item.Id}}"> {{item.Name}}</option>
+                        </select>
+                    </div>
+                     <div class="form-group">
+                        <label>Committe: </label>
+                        <select class="form-control" ng-model="selectedCommittee"><option ng-repeat="item in CommitteeList" value="{{item.Id}}">{{item.Name}}</option></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Start Date: </label>
+                        <input ng-disabled="!selectedCommittee" ng-model="StartDate" class="form-control" type="date">
+                    </div>
+                    <div class="form-group">
+                        <label>End Date: </label>
+                        <input ng-disabled="!StartDate" ng-model="EndDate" class="form-control" type="date" />
+                    </div>
+                    <button ng-disabled="!selectedCommittee" class="btn btn-success" ng-click="onClick('SearchTask')"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-primary  float-right" data-toggle="modal" href="#task-modal" ng-click="Reset()"><i class="fa fa-plus"> <b> Add Task</b></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="row" ng-show="view=='Grid'">
+            <div class="col-md-3" ng-repeat="item in TaskList">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">{{item.Title}}</h3>
+                        <h6>{{ToDate(item.TaskDate)}}</h6>
+                        <span ng-repeat="subItem in item.AssignedMemberList | limitTo:numLimit">
+                            <strong>{{subItem.AssignedMemberName}}</strong>
+                        </span>
+                        <button class="btn btn-link text-white" ng-click="readMore()">read more</button>
+                        <button class="btn btn-info"><i class="fa fa-plus-circle" ng-click="onClick('FindMember',item)"> Assign Member</i></button>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" ng-click="onClick('EditTask',item); onClick('AddInputForAgenda')">
+                                <i class="fa fa-plus-circle"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool"><i class="fa fa-edit" data-toggle="modal" href="#task-modal" ng-click="onClick('EditTask',item)"></i></button>
+                            <button type="button" class="btn btn-tool" data-widget="maximize" ng-click="onClick('EditTask',item)">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                        <!-- /.card-tools -->
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="table table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td width="1%"><i class="fas fa-sync-alt" ng-click="onClick('ResetMember',item)"></i></td>
+                                        <td>Name</td>
+                                        <td>Email</td>
+                                        <td>Address</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in MemberToAssignList">
+                                        <td width="1%"><input type="checkbox" ng-click="onClick('AssignMemberSave',item)" /></td>
+                                        <td>{{item.Name}}</td>
+                                        <td>{{item.Email}}</td>
+                                        <td>{{item.Address}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        {{item.Remark}}
+                        <div class="table table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <th width="1%">Sl</th>
+                                    <th>Title</th>
+                                    <th>Remark</th>
+                                    <th width="1%">Status</th>
+                                </tr>
+                                <tr ng-repeat="subItem in item.AgendaList">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{subItem.AgendaTitle}}</td>
+                                    <td>{{subItem.AgendaRemark}}</td>
+                                    <td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" ng-model="subItem.AgendaStatus" ng-change="onClick('AddAgendaStatus',subItem)">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        @*  <button class="btn btn-sm btn-primary" ><i class="fa fa-plus-circle"></i></button>*@
+                        <div ng-repeat="item in AgendaInputForm">
+                            <label>{{$index+1}}</label>
+
+                            <input class="form-control" ng-model="item.title" placeholder="Enter Agenda Title" />
+                            <textarea class="form-control" ng-model="item.description" placeholder="Enter Description"></textarea>
+                            <button class="btn btn-sm btn-success" ng-click="onClick('SaveAgenda',item)"><i class="fa fa-check"></i></button>
+                            <button class="btn btn-sm btn-danger" ng-click="onClick('RemoveInputFromAgenda',$index)"><i class="fas fa-ban"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+        <div class="card" ng-show="view=='Table'">
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead><tr><th>SL</th><th>Title</th><th>Date</th><th>Description</th><th>Action</th></tr></thead>
+                    <tbody>
+                        <tr ng-repeat="item in TaskList">
+                            <td width="1%">{{$index+1}}</td>
+                            <td>{{item.Title}}</td>
+                            <td>{{ToDate(item.TaskDate)}}</td>
+                            <td>{{item.Remark}}</td>
+                            <td width="1%"><button class="btn btn-info" data-toggle="modal" href="#task-modal"><i class="fa fa-edit" ng-click="onClick('EditTask',item)"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="task-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Task Manage</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-vertical">
+                        <div class="form-group">
+                            <label>Committe: </label>
+                            <select class="form-control" ng-model="selectedCommittee"><option ng-repeat="item in CommitteeList" value="{{item.Id}}">{{item.Name}}</option></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Title:</label>
+                            <input type="text" class="form-control" ng-model="Title" />
+                        </div>
+                        <div class="form-group">
+                            <label>Description:</label>
+                            <input type="text" class="form-control" ng-model="Description" />
+                        </div>
+                        <div class="form-group">
+                            <label>Set Time:</label>
+                            <input type="datetime-local" class="form-control" ng-model="TaskTime.value" />
+                        </div>
+                        <div class="form-group">
+                            <label>Done:</label>
+                            <input type="checkbox" ng-model="Status" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button data-toggle="tooltip" title="Save" type="button" class="btn btn-success pull-right" data-dismiss="modal" ng-click="onClick('SaveTask')"><i class="fa fa-save"></i></button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    @*<div class="modal fade" id="member-modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Assign Member</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button data-toggle="tooltip" title="Save" type="button" class="btn btn-success pull-right" data-dismiss="modal" ng-click="onClick('SaveTask')"><i class="fa fa-save"></i></button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>*@
+</section>
+
+
+@section Scripts
+    {
+    <script src="~/scripts/Angular/appModul.js"></script>
+    <script src="~/scripts/Angular/Task/TaskService.js"></script>
+    <script src="~/scripts/Angular/Task/TaskController.js"></script>
+    <script src="~/scripts/Angular/Committee/CommitteeService.js"></script>
+    <script src="~/scripts/Angular/Committee/committeController.js"></script>
+    <script src="~/scripts/Angular/CommitteeMember/CommitteeMemberService.js"></script>
+    <script src="~/scripts/Angular/Organization/OrganizationService.js"></script>
+}
+
+
+
+

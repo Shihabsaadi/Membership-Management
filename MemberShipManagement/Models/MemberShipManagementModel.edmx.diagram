@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a08f211a604543e2a47e39ca3ac4b366" Name="Diagram1">
+        <EntityTypeShape EntityType="MembershipManagementDBModel.Committee" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManagementDBModel.Committee_Member" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManagementDBModel.District" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManagementDBModel.Division" Width="1.5" PointX="1.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManagementDBModel.Member" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManagementDBModel.Organization" Width="1.5" PointX="0.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManagementDBModel.Role" Width="1.5" PointX="3" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManagementDBModel.Service" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManagementDBModel.Task" Width="1.5" PointX="5.25" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManagementDBModel.Task_Member" Width="1.5" PointX="7.5" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManagementDBModel.TaskAgenda" Width="1.5" PointX="7.5" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManagementDBModel.Transaction" Width="1.5" PointX="10.5" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManagementDBModel.Upazila" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManagementDBModel.User" Width="1.5" PointX="8.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MembershipManagementDBModel.CommitteeMemberView" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Committee_Member_Committee" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Committee_Organizations" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Task_Committee" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_User_Committees" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Committee_Member_Committee_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Committee_Member_Members" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Committee_Member_User" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Districts_Divisions" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Members_Districts" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Upazilas_Districts" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Members_Divisions" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Members_Organizations" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Members_Upazilas" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Task_Member_Members" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Transaction_PaidBy" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_User_Members" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Transaction_Organization" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_User_Organizations" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Agenda_Task" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Task_Member_Task" ManuallyRouted="false" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Transaction_ReceivedBy" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MembershipManagementDBModel.Member_Service" Width="1.5" PointX="5.25" PointY="8" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Member_Service_Members" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_Member_Service_Service" />
+        <EntityTypeShape EntityType="MembershipManagementDBModel.MemberServiceBill" Width="2.125" PointX="10.5" PointY="11.375" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_MemberServiceBill_Member_Service" />
+        <AssociationConnector Association="MembershipManagementDBModel.FK_MemberServiceBill_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

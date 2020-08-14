@@ -1,0 +1,1 @@
+C:\Users\Admin\documents\visual studio 2015\Projects\MemberShipManagement\MemberShipManagement.Business\obj\Debug\MemberShipManagement.Business.csprojResolveAssemblyReference.cache
